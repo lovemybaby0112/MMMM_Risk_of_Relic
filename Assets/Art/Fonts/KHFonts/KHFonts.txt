@@ -1,0 +1,9 @@
+# Kingdom Hearts Font Collection
+
+KHMenu, KHGummi, KHTitle and KHScala comprise a free collection of fonts created by Televo. Each font contains all unicode characters of Basic Latin and a few specific characters of Latin-1. A full character list can be found below. In comparison to other similar fonts floating around the internet (such as DFPW5_EUR.ttf, KH_ALL_MENU_I.ttf and Kingdom_Hearts_Font.ttf) these fonts have vastly improved spacing/kerning (if you use metrics, not optical spacing) AND the characters have been accurately recreated with great care, directly from the games, particularly KHTitle (sourced from The World That Never Was' room text) and KHScala (sourced from the various words around Scala ad Caelum). Regarding KHScala, as the language has not been fully deciphered, the font can only be as correct as the most recent translation.
+
+Character List: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,:;…!?*#/\(){}[]-_“”‘’"'@&©°|¢$€£¥+-×÷=≠><≥≤~^%
+
+When using these fonts publicly, dropping a line of credit would be much appreciated, but not necessary. Even so, feel free to message me on Discord at Televo#9400, as seeing how my efforts have gone on to help others simply makes my day :)
+
+You may also want to check out the full Kingdom Hearts Icon Collection at (https://github.com/Televo/kingdom-hearts-icon-collection).
