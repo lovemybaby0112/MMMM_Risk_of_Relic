@@ -19,12 +19,12 @@ public class C_Info : MonoBehaviour
     }
     public void ChangeSceneToMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Loading()
     {     
-        //SceneManager.LoadSceneAsync("Main");
+        //SceneManager.LoadSceneAsync("Main"); //切到遊戲畫面
         LoadingMask.SetActive(true);
     }
 }
