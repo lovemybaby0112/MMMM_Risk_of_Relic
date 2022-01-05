@@ -7,14 +7,7 @@ public class MobManager : MonoBehaviour
     
     private static MobManager MobManager_Ins; //singleton單例化
     //public static MobManager Instance() { return MobManager_Ins; }
-    public static MobManager Instance 
-    {
-        get
-        {
-            if(MobManager_Ins == null) MobManager_Ins = new MobManager();
-            return MobManager_Ins;
-        }
-    }
+    public static MobManager Instance { get { return MobManager_Ins; } }
 
     public GameObject mob_FatherGameObject;//裝mob的父物件
     List<Mobs> mobsList;
@@ -29,6 +22,7 @@ public class MobManager : MonoBehaviour
     /// </summary>
     public MobManager()
     {
+        MobManager_Ins = this;
         mobsList = new List<Mobs>();
         threeMobs = new GameObject[3]; //讓外面一次產生三隻
     }
@@ -57,6 +51,7 @@ public class MobManager : MonoBehaviour
     /// <returns></returns>
     public GameObject[] GetMob()
     {
+        count = mobsList.Count;
         GameObject mob = null;
         for (int n = 0; n < threeMobs.Length; n++)
         {
@@ -76,8 +71,8 @@ public class MobManager : MonoBehaviour
         float mob1_X = threeMobs[0].transform.position.x;
         float mob1_Z = threeMobs[0].transform.position.z;
         //後面兩隻怪生在第一隻怪旁邊
-        threeMobs[1].transform.position = new Vector3(Random.Range(mob1_X + 1, mob1_X + 3), 1.0f, Random.Range(mob1_Z + 1, mob1_Z + 3));
-        threeMobs[2].transform.position = new Vector3(Random.Range(mob1_X - 1, mob1_X - 4), 1.0f, Random.Range(mob1_Z - 1, mob1_Z - 3));          
+        threeMobs[1].transform.position = new Vector3(Random.Range(mob1_X + 1, mob1_X + 5), 1.0f, Random.Range(mob1_Z + 1, mob1_Z + 5));
+        threeMobs[2].transform.position = new Vector3(Random.Range(mob1_X - 1, mob1_X - 5), 1.0f, Random.Range(mob1_Z - 1, mob1_Z - 5));          
         if (threeMobs == null) return null;
         return threeMobs;
     }
@@ -106,20 +101,17 @@ public class MobManager : MonoBehaviour
         Debug.Log("in");
         if (Random.Range(0, 100) < 60)
         {
+            mob = GetMob();
             Debug.Log("do");
-            mob = MobManager.Instance.GetMob();
             for (int i = 0; i < mob.Length; i++)
             {
                 ray = new Ray(mob[i].transform.position, Vector3.down);
                 if (Physics.Raycast(ray, out hitInfo, 10.0f, 1 << LayerMask.NameToLayer("Terrain")))
                 {
-                    Debug.DrawRay(ray.origin, Vector3.down, Color.blue, 3.0f);
-                    mob[i].SetActive(true);
+                    //Debug.DrawRay(ray.origin, Vector3.down, Color.blue, 3.0f);
+                    mob[i].SetActive(true);                  
                 }
-                else
-                {
-                    MobManager.Instance.SetMobOnUsingFalse(mob[i]);
-                }
+                else SetMobOnUsingFalse(mob[i]);
             }
         }
     }
