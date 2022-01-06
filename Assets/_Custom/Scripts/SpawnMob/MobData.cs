@@ -15,14 +15,6 @@ public class Mobs
     public int dmg; //傷害
     protected int speed; //走路速度
 
-    public void GetHurt(int playerDmg)
-    {
-        hp -= dmg;
-        if (hp <= 0)
-        {
-            hp = 0;
-        }
-    }
     protected virtual void Ai()
     {
 

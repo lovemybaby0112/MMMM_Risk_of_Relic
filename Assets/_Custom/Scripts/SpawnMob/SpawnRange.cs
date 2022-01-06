@@ -31,12 +31,12 @@ public class SpawnRange : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            MobManager.Instance.minX = minX;
-            MobManager.Instance.maxX = maxX;
-            MobManager.Instance.minZ = minZ;
-            MobManager.Instance.maxZ = maxZ;
+            MobManager.Instance().minX = minX;
+            MobManager.Instance().maxX = maxX;
+            MobManager.Instance().minZ = minZ;
+            MobManager.Instance().maxZ = maxZ;
             Spawn = true;
-            MobManager.Instance.DoSpawn(Spawn);
+            MobManager.Instance().DoSpawn(Spawn);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -44,7 +44,7 @@ public class SpawnRange : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Spawn = false;
-            MobManager.Instance.DoSpawn(Spawn);
+            MobManager.Instance().DoSpawn(Spawn);
         }
     }
     private void OnDrawGizmos()

@@ -6,17 +6,19 @@ public class MobManager : MonoBehaviour
 {
     
     private static MobManager MobManager_Ins; //singleton單例化
-    //public static MobManager Instance() { return MobManager_Ins; }
-    public static MobManager Instance { get { return MobManager_Ins; } }
+    public static MobManager Instance() { return MobManager_Ins; }
 
     public GameObject mob_FatherGameObject;//裝mob的父物件
     List<Mobs> mobsList;
     int count; //怪物陣列總長度
-    GameObject[] threeMobs; //一次升三隻怪，裝怪陣列
+    GameObject[] threeMobs; //裝每次產生三隻怪的陣列
+
+    //怪物生成位置座標的大小數值
     [HideInInspector]
-    public float minX, maxX;
+    public float minX, maxX; 
     [HideInInspector]
     public float minZ, maxZ;
+
     /// <summary>
     /// Constructor
     /// </summary>
@@ -46,7 +48,7 @@ public class MobManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 把創建好的怪物傳出去，並且改變位置
+    /// 得到未再使用中的怪物物件，設定其位置，並把其設定為使用中
     /// </summary>
     /// <returns></returns>
     public GameObject[] GetMob()
@@ -88,21 +90,20 @@ public class MobManager : MonoBehaviour
             if (mobsList[i].gameObject == gameObject) mobsList[i].onUsing = false;
         }
     }
+
     #region 怪物出生
     GameObject[] mob;
 
     /// <summary>
-    /// 產卵
+    /// 產卵(同時判定有沒有再有地板的地方出生)
     /// </summary>
     public void Spawn()
     {
         Ray ray; //判斷怪物有沒有在正確位置的射線
         RaycastHit hitInfo; //擊中的資訊
-        Debug.Log("in");
         if (Random.Range(0, 100) < 60)
         {
             mob = GetMob();
-            Debug.Log("do");
             for (int i = 0; i < mob.Length; i++)
             {
                 ray = new Ray(mob[i].transform.position, Vector3.down);
