@@ -101,7 +101,9 @@ public class MobManager : MonoBehaviour
     {
         Ray ray; //判斷怪物有沒有在正確位置的射線
         RaycastHit hitInfo; //擊中的資訊
-        if (Random.Range(0, 100) < 60)
+        int num = Random.Range(0, 10);
+        Debug.Log(num);
+        if (num < 6)
         {
             mob = GetMob();
             for (int i = 0; i < mob.Length; i++)
@@ -125,8 +127,7 @@ public class MobManager : MonoBehaviour
     {
         if (spawn)
         {
-            InvokeRepeating("Spawn", 3.0f, 3.0f);
-            Debug.Log("yes");
+            InvokeRepeating("Spawn", 3.0f, 1.0f);
         }
         else CancelInvoke("Spawn"); //停止InvokeRepeating的方法
     }
