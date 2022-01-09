@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class Menu : MonoBehaviour
 {
@@ -55,6 +56,7 @@ public class Menu : MonoBehaviour
 
     public void QuitGame()
     {
+        EditorApplication.isPlaying = false;
         Application.Quit();
     }
     public void ChangeScreenSize(Dropdown dropdown)
