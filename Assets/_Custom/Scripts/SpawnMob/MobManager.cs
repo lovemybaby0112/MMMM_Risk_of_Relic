@@ -111,6 +111,7 @@ public class MobManager : MonoBehaviour
                 ray = new Ray(mob[i].transform.position, Vector3.down);
                 if (Physics.Raycast(ray, out hitInfo, 9999.0f, 1 << LayerMask.NameToLayer("Terrain")))
                 {
+                    //重新賦Y值，Y值等於射線打到的點，套在怪物身上記得把+0.5f拔掉，因為pivot會在腳上
                     var mobP = mob[i].transform.localPosition;
                     mobP.y = hitInfo.point.y + 0.5f;
                     mob[i].transform.localPosition = mobP;
