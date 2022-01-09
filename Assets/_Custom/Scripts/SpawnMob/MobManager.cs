@@ -69,12 +69,12 @@ public class MobManager : MonoBehaviour
             //if (mob == null) return null;
             threeMobs[n] = mob;
         }
-        threeMobs[0].transform.position = new Vector3(Random.Range(minX, maxX), 1.0f, Random.Range(minZ, maxZ));//第一隻怪在box範圍內隨機出生
+        threeMobs[0].transform.position = new Vector3(Random.Range(minX, maxX), 50.0f, Random.Range(minZ, maxZ));//第一隻怪在box範圍內隨機出生
         float mob1_X = threeMobs[0].transform.position.x;
         float mob1_Z = threeMobs[0].transform.position.z;
         //後面兩隻怪生在第一隻怪旁邊
-        threeMobs[1].transform.position = new Vector3(Random.Range(mob1_X + 1, mob1_X + 5), 1.0f, Random.Range(mob1_Z + 1, mob1_Z + 5));
-        threeMobs[2].transform.position = new Vector3(Random.Range(mob1_X - 1, mob1_X - 5), 1.0f, Random.Range(mob1_Z - 1, mob1_Z - 5));          
+        threeMobs[1].transform.position = new Vector3(Random.Range(mob1_X + 1, mob1_X + 5), 50.0f, Random.Range(mob1_Z + 1, mob1_Z + 5));
+        threeMobs[2].transform.position = new Vector3(Random.Range(mob1_X - 1, mob1_X - 5), 50.0f, Random.Range(mob1_Z - 1, mob1_Z - 5));          
         if (threeMobs == null) return null;
         return threeMobs;
     }
@@ -109,8 +109,11 @@ public class MobManager : MonoBehaviour
             for (int i = 0; i < mob.Length; i++)
             {
                 ray = new Ray(mob[i].transform.position, Vector3.down);
-                if (Physics.Raycast(ray, out hitInfo, 10.0f, 1 << LayerMask.NameToLayer("Terrain")))
+                if (Physics.Raycast(ray, out hitInfo, 9999.0f, 1 << LayerMask.NameToLayer("Terrain")))
                 {
+                    var mobP = mob[i].transform.localPosition;
+                    mobP.y = hitInfo.point.y + 0.5f;
+                    mob[i].transform.localPosition = mobP;
                     //Debug.DrawRay(ray.origin, Vector3.down, Color.blue, 3.0f);
                     mob[i].SetActive(true);                  
                 }
