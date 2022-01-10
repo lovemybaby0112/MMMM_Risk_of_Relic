@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 703341085520721206}
   - component: {fileID: 7765301465838126942}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boulder04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &703341085520721206
 Transform:
@@ -72,12 +72,12 @@ GameObject:
   - component: {fileID: 5861037615193703302}
   - component: {fileID: 5053975152786120384}
   - component: {fileID: 1995073983892619474}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boulder04_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &5861037615193703302
 Transform:
@@ -116,6 +116,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -140,6 +141,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7089500006070154246
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,12 +153,12 @@ GameObject:
   - component: {fileID: 9024073673879223291}
   - component: {fileID: 5197615730189277949}
   - component: {fileID: 4574709719192049333}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boulder04_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &9024073673879223291
 Transform:
@@ -195,6 +197,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -219,6 +222,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7825220151450154600
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,12 +235,12 @@ GameObject:
   - component: {fileID: 1424026331333009821}
   - component: {fileID: 551392146510055659}
   - component: {fileID: 5071858269139273839}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boulder04_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &2747629589532027690
 Transform:
@@ -275,6 +279,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -299,6 +304,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &5071858269139273839
 MeshCollider:
   m_ObjectHideFlags: 0

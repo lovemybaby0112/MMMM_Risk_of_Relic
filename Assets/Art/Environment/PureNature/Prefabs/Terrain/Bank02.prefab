@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 2322017821558200703}
   - component: {fileID: 566751712745532853}
   - component: {fileID: 3809753318949050150}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bank02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &1699736617705887450
 Transform:
@@ -56,6 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,6 +81,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &3809753318949050150
 MeshCollider:
   m_ObjectHideFlags: 0

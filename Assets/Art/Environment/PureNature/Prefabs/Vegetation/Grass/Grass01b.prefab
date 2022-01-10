@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3538210647707175725}
   - component: {fileID: 3497942413068546857}
   - component: {fileID: 1688787594339010531}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Grass01b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,6 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,3 +80,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}

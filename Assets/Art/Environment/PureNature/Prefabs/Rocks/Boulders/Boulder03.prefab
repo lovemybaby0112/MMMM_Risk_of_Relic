@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2023881692452993595}
   - component: {fileID: 6816612797509793835}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boulder03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &2023881692452993595
 Transform:
@@ -67,12 +67,12 @@ GameObject:
   - component: {fileID: 4816677354366363009}
   - component: {fileID: 3101212762761506806}
   - component: {fileID: 994924008938456873}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boulder03_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &4816677354366363009
 Transform:
@@ -111,6 +111,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -135,6 +136,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7348896799219179320
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,12 +149,12 @@ GameObject:
   - component: {fileID: 3207846162448156027}
   - component: {fileID: 1980871923684134643}
   - component: {fileID: 1511336212171613700}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boulder03_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &3772177947197434110
 Transform:
@@ -191,6 +193,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -215,6 +218,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &1511336212171613700
 MeshCollider:
   m_ObjectHideFlags: 0

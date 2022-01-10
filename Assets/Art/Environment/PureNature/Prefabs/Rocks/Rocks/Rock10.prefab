@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3834385551660807875}
   - component: {fileID: -4556441577412580295}
   - component: {fileID: -6612164395259819633}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rock10
   m_TagString: Untagged
   m_Icon: {fileID: 0}

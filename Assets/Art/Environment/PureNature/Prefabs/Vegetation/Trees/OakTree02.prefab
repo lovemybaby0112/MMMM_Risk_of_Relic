@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3361692797785593711}
   - component: {fileID: 8975593285305023639}
   - component: {fileID: 2991821628024139018}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: OakTree02_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5826205071688418553}
   - component: {fileID: 4115209706536281355}
   - component: {fileID: 8354948122903103733}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: OakTree02_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3799578387175572401}
   - component: {fileID: 8277844539252978880}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: OakTree02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 3959780262480548972}
   - component: {fileID: 7085366413073044800}
   - component: {fileID: 3046783442267225437}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: OakTree02_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

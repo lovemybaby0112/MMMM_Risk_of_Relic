@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8974743349276253548}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MushroomsCluster02LOD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &8974743349276253548
 Transform:
@@ -43,12 +43,12 @@ GameObject:
   m_Component:
   - component: {fileID: 9210213697036957795}
   - component: {fileID: 936296502755148715}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MushroomsCluster02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &9210213697036957795
 Transform:
