@@ -60,7 +60,6 @@ public class MobManager : MonoBehaviour
     public Mobs[] GetMob()
     {
         count = mobsList.Count;
-        GameObject mob = null;
         for (int n = 0; n < threeMobs.Length; n++)
         {
             for (int i = 0; i < count; i++)
