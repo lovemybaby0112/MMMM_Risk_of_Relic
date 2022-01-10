@@ -19,12 +19,12 @@ public class AIData
     public bool doMove; //移動
     [HideInInspector]
     public Vector3 myCurrentVector; //當前速率
-
-
-
+    public float mobMeleeAttackRange; //進戰攻擊距離
+    public float mobSpellAttackRange; //法術攻擊距離
     public float mobSpeed; //怪物速度
-    public float mobAttackRamge; //怪物的攻擊距離
 
 
-    
+
+
+
 }

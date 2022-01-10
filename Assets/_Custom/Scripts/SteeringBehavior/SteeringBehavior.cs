@@ -6,12 +6,16 @@ using UnityEngine;
 public class SteeringBehavior
 {
 
+
+
     static public void Move(AIData data)
     {
+        
         if (data.doMove == false) return; //不做事
         else
-        {
+        {          
             Transform my = data.my.transform;
+
             Vector3 myPosition = data.my.transform.position;
             Vector3 mForward = my.forward;
             Vector3 mRight = my.right;
@@ -30,17 +34,23 @@ public class SteeringBehavior
 
     }
 
-    static public void Seek(AIData data)//Action action
+    static public int Seek(AIData data)//Action action
     {
         Vector3 target = data.targetPosition; //取得目標位置       
         Vector3 velocity = target - data.my.transform.position; //目標位置-自己的位置得到向量
         velocity.y = 0.0f;//模組pivot都在腳下就不用這行
         float distance = velocity.magnitude; //將向量轉純量(變長度)
 
-        
-        if (distance <=  data.mobAttackRamge + 0.001f) //0.001f是偏差值，有其他怪物之後記得改成distance <= AIData.mobAttackDistance + 0.001f
+
+        if (distance <= data.mobMeleeAttackRange + 0.001f)
         {
             data.doMove = false;
+            return (int)DoAI.MeleeAttack;
+        }
+        else if (distance <=  data.mobSpellAttackRange + 0.001f) //0.001f是偏差值，有其他怪物之後記得改成distance <= AIData.mobAttackDistance + 0.001f
+        {
+            data.doMove = false;
+            return (int)DoAI.SpellAttack;
             // Vector3 finalPosition = data.my.transform.position;
             //return false; //停止Seek?開始在外面做AI?
             //action();//在裡面做AI??
@@ -74,7 +84,8 @@ public class SteeringBehavior
             if (distance < 3.0f) vecDotRight *= (distance / 3.0f + 1.0f); //越接近終點時轉向力越大，使其在剩下距離能順利到達目標
             data.turnForce = vecDotRight;
             data.doMove = true;
-        }      
+        }
+        return (int)DoAI.Move;
         //return true;
         //應該不用?這段是靠近時減速?
         //if (distance < 3.0f)
@@ -83,5 +94,11 @@ public class SteeringBehavior
         //    else AIData.moveForce = vecDotForward * 100.0f;
         //}
         //else AIData.moveForce = 100.0f;
+    }
+    public enum DoAI
+    {
+        MeleeAttack = 0,
+        SpellAttack = 1,
+        Move = 2,
     }
 }

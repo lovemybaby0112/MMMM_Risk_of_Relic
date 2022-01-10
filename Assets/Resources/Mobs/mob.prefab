@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7384843243432060073}
   - component: {fileID: 2249147306533535487}
   m_Layer: 0
-  m_Name: mob
+  m_Name: Mob
   m_TagString: Mob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,5 +133,7 @@ MonoBehaviour:
     moveForce: 0
     doMove: 0
     myCurrentVector: {x: 0, y: 0, z: 0}
+    mobMeleeAttackRange: 0
+    mobSpellAttackRange: 0
     mobSpeed: 6
-    mobAttackRamge: 5
+  canvas: {fileID: 8401283258336236353, guid: 3ed913a0562712746aadde528fcca96c, type: 3}
