@@ -4,7 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MobAI : MonoBehaviour
-{  
+{
+    enum State
+    {
+    }
+
     public AIData data;
     GameObject[] player;
     int doAI; //要做甚麼AI
