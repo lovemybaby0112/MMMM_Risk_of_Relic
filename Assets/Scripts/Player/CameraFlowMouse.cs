@@ -4,11 +4,14 @@ public class CameraFlowMouse : MonoBehaviour
 {
     public float mouseSensitivity = 100f;    //·Æ¹«ÆF±Ó
     public Transform playerBody;
+    public Camera camara;
     float xRotation;
 
     //public Transform camera;
     //public Transform cameraHighest;
     //public Transform cameraLowest;
+
+   
 
     public float journeyTime = 1.0f;
     private float startTime;
@@ -20,6 +23,7 @@ public class CameraFlowMouse : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        camara = GetComponent<Camera>();
 
     }
 
@@ -27,7 +31,7 @@ public class CameraFlowMouse : MonoBehaviour
     void Update()
     {
         FlowMouse();
-
+       
     }
 
 
@@ -38,9 +42,18 @@ public class CameraFlowMouse : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
+        //Debug.Log(mouseY);
+        //Debug.Log(xRotation);
+        
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
+
+
+
+
+
+
         //Vector3 center = cameraHighest.position + cameraLowest.position * 0.5f;
 
         //    center -= new Vector3(0, 1, 0);
@@ -50,7 +63,7 @@ public class CameraFlowMouse : MonoBehaviour
         //    float fracComplete = (Time.time - startTime) / journeyTime;
         //    transform.position = Vector3.Slerp(riseRelCenter, setRelCenter, fracComplete);
         //    transform.position += center;
-        //}
+        
 
 
 
