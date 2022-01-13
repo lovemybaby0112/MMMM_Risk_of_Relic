@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraFlowMouse : MonoBehaviour
 {
-    public float mouseSensitivity = 100f;    //·Æ¹«ÆF±Ó
+    public float mouseSensitivity = 200f;    //·Æ¹«ÆF±Ó
     public Transform playerBody;
     public Camera camara;
     float xRotation;

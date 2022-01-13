@@ -52,6 +52,7 @@ public class playerMovement : MonoBehaviour
         _animator.SetFloat("x", x);
         _animator.SetFloat("z", z);
         _animator.SetBool("IsMoving", false);
+        _animator.SetBool("IsGrounded", false);
         
         if(x!= 0 || z != 0)
         {
@@ -66,10 +67,12 @@ public class playerMovement : MonoBehaviour
         if (isGrounded == true)
         {
             _animator.ResetTrigger("Jump");
+            _animator.SetBool("IsGrounded", true);
         }
         else
         {
             _animator.SetTrigger("Jump");
+            _animator.SetBool("IsGrounded", false);
         }
         
 
