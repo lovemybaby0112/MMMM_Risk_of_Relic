@@ -6,9 +6,9 @@ public class playerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
-    public float speed = 12f;
-    public float gravity = -9.81f; //重力
-    public float jumpHeight = 9f;
+    public float speed = 10f;
+    public float gravity = -20f; //重力
+    public float jumpHeight = 5f;
 
     public Transform groundCheck;
     public float groundDistance= 0.4f;
@@ -18,21 +18,21 @@ public class playerMovement : MonoBehaviour
 
 
     Vector3 velocity;
-    bool isGrounded;
+    bool isGrounded = false;
 
     void Start()
     {
         _animator = GetComponent<Animator>();
-        
+
     }
 
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if(isGrounded && velocity.y < 0)
+        if (isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f; 
+            velocity.y = -2f;
         }
 
         Movement();
@@ -40,6 +40,7 @@ public class playerMovement : MonoBehaviour
 
     void Movement()
     {
+
         float x = Input.GetAxis("Horizontal");  //左右移動
         float z = Input.GetAxis("Vertical");    //前後移動
 
@@ -48,13 +49,32 @@ public class playerMovement : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
-        _animator.SetFloat("Foword", Mathf.Abs(z));
-        _animator.SetFloat("Turn", Mathf.Abs(x));
+        _animator.SetFloat("x", x);
+        _animator.SetFloat("z", z);
+        _animator.SetBool("IsMoving", false);
+        _animator.SetBool("IsGrounded", false);
+        
+        if(x!= 0 || z != 0)
+        {
+            _animator.SetBool("IsMoving", true);
+        }
 
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+
+        if (isGrounded == true)
+        {
+            _animator.ResetTrigger("Jump");
+            _animator.SetBool("IsGrounded", true);
+        }
+        else
+        {
+            _animator.SetTrigger("Jump");
+            _animator.SetBool("IsGrounded", false);
+        }
+        
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
@@ -65,9 +85,6 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-    void animatorCtrl()
-    {
-        
-    }
+
 }
 
