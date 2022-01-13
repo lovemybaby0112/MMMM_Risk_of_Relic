@@ -51,8 +51,12 @@ public class playerMovement : MonoBehaviour
 
         _animator.SetFloat("x", x);
         _animator.SetFloat("z", z);
+        _animator.SetBool("IsMoving", false);
         
-
+        if(x!= 0 || z != 0)
+        {
+            _animator.SetBool("IsMoving", true);
+        }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
