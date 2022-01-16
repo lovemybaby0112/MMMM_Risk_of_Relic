@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 2853166939329767686}
   - component: {fileID: 1465001431590398042}
   - component: {fileID: 7764761931316346977}
+  - component: {fileID: 7307790416429992495}
   m_Layer: 7
   m_Name: OakTree04_LOD0
   m_TagString: Untagged
@@ -224,6 +225,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &7307790416429992495
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505368703914525992}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.87
+  m_Height: 5.19
+  m_Direction: 1
+  m_Center: {x: 0.17, y: 1.28, z: -0.24}
 --- !u!1 &7423327183768551598
 GameObject:
   m_ObjectHideFlags: 0
