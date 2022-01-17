@@ -107,7 +107,7 @@ public class MobManager : MonoBehaviour
         Ray ray; //判斷怪物有沒有在正確位置的射線
         RaycastHit hitInfo; //擊中的資訊
         int num = Random.Range(0, 10);
-        Debug.Log(num);
+        //Debug.Log(num);
         if (num < 6)
         {
             mob = GetMob();

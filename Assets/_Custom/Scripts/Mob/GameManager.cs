@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     {
         #region 創建怪物物件
         string mobname = "Mushroom";
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 3; i++)
         {
             MobManager.Instance().CreateMobs(mobname);
         }
