@@ -83,8 +83,8 @@ public class SteeringBehavior
             }
             if (distance < 3.0f) vecDotRight *= (distance / 3.0f + 1.0f); //越接近終點時轉向力越大，使其在剩下距離能順利到達目標
             data.turnForce = vecDotRight;
-            data.doMove = true;
         }
+        data.doMove = true;
         return (int)DoAI.Move;
         //return true;
         //應該不用?這段是靠近時減速?

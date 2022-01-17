@@ -5,10 +5,7 @@ using UnityEngine.UI;
 
 public class MobAI : MonoBehaviour
 {
-    enum State
-    {
-    }
-
+    float state;
     public AIData data;
     GameObject[] player;
     int doAI; //要做甚麼AI
@@ -22,37 +19,42 @@ public class MobAI : MonoBehaviour
     }
     void Start()
     {
-        this.transform.forward = player[0].transform.position;
-        animator.Play("Spawn");
+        this.transform.LookAt(player[0].transform.position);
+        state = 1;
     }
 
     void Update()
     {
-
         data.targetPosition = player[0].transform.position;
         data.my = this.gameObject;
+        FSM();
     }
 
     void FSM()
     {
-
-
-        doAI = SteeringBehavior.Seek(data);
-        switch (doAI)
+        if(state == 1) animator.Play("Spawn");
+        float info = animator.GetCurrentAnimatorStateInfo(0).normalizedTime; //判斷動畫結束時間
+        if(info >= 0.74f)
         {
-            case 0:
-                animator.SetBool("Walk Forward", false);
-                animator.SetTrigger("Punch Attack");
-                break;
-            case 1:
-                animator.SetBool("Walk Forward", false);
-                animator.SetTrigger("Breath Attack");
-                break;
-            case 2:
-                SteeringBehavior.Move(data);
-                animator.SetBool("Walk Forward", true);
-                break;
+            state = 2;
+            doAI = SteeringBehavior.Seek(data);
+            switch (doAI)
+            {
+                case 0:
+                    animator.SetBool("Walk Forward", false);
+                    animator.SetTrigger("Punch Attack");
+                    break;
+                case 1:
+                    animator.SetBool("Walk Forward", false);
+                    animator.SetTrigger("Breath Attack");
+                    break;
+                case 2:
+                    SteeringBehavior.Move(data);
+                    animator.SetBool("Walk Forward", true);
+                    break;
+            }
         }
+       
     }
 
 }
