@@ -9,18 +9,22 @@ public class CameraController : MonoBehaviour
     public float smooth = 2f; // how smooth the camera movement is
     private Vector3 m_TargetPosition; // the position the camera is trying to be in)
     Transform follow; //the position of Player
-    Vector3 relCameraPos;
+    private Vector3 relCameraPos;
+    private Vector3 camera_offset;
+    private RaycastHit hit;
+    private float dis;
 
     void Start()
     {
         follow = GameObject.FindWithTag("Player").transform;
         relCameraPos = transform.position - follow.position;
+        dis = relCameraPos.magnitude;
+        camera_offset = transform.localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
     void LateUpdate()
     {
@@ -35,6 +39,7 @@ public class CameraController : MonoBehaviour
 
     public void CameraControl()
     {
+        var dis = relCameraPos.magnitude;
         float cam_h = Input.GetAxis("Mouse X");
         float cam_v = Input.GetAxis("Mouse Y");
         transform.position = relCameraPos + follow.position;
@@ -43,12 +48,25 @@ public class CameraController : MonoBehaviour
         float angleX = transform.rotation.eulerAngles.x;
         float nextAngleX = -cam_v * smooth + angleX;
 
+
         if (nextAngleX >= 360f)
         {
             nextAngleX -= 360f;
         }
         if ((nextAngleX < 60f) || (nextAngleX <= 360f && nextAngleX >= 300f))
             transform.RotateAround(follow.position, transform.right, -cam_v * smooth);
+        //if (Physics.Linecast(follow.position, transform.position, out hit))
+        //{
+        //    transform.position = new Vector3(0, 0, Vector3.Distance(follow.position, hit.point));
+        //    //transform.position =  hit.point + transform.position * 0.01f;
+        //    transform.LookAt(follow);
+        //}
+        //else
+        //{
+        //    transform.position = Vector3.Lerp(transform.position, camera_offset, Time.deltaTime);
+        //    Debug.Log(transform.position);
+
+        //}
 
         relCameraPos = transform.position - follow.position;
     }
