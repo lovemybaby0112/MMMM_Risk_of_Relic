@@ -10,10 +10,10 @@ public class SteeringBehavior
 
     static public void Move(AIData data)
     {
+        
         if (data.doMove == false) return; //不做事
         else
-        {
-
+        {          
             Transform my = data.my.transform;
 
             Vector3 myPosition = data.my.transform.position;
@@ -30,7 +30,6 @@ public class SteeringBehavior
 
             myPosition = myPosition + my.forward * data.moveForce * Time.deltaTime; //移動
             my.position = myPosition;
-            Debug.Log(myPosition);
         }
 
     }
@@ -70,7 +69,6 @@ public class SteeringBehavior
             vecDotForward = 1.0f;
             data.turnForce = 0.0f;//轉向力規零
             data.myCurrentVector = velocity; //面對方向就改為往目標的方向(速率)
-            data.doMove = true;
         }
         else
         {
@@ -88,7 +86,6 @@ public class SteeringBehavior
             data.doMove = true;
         }
         return (int)DoAI.Move;
-
         //return true;
         //應該不用?這段是靠近時減速?
         //if (distance < 3.0f)

@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class MobAI : MonoBehaviour
 {
-    float state;
+    enum State
+    {
+    }
 
     public AIData data;
     GameObject[] player;
@@ -20,51 +22,37 @@ public class MobAI : MonoBehaviour
     }
     void Start()
     {
-        state = 1;
-        this.transform.LookAt(player[0].transform.position);
+        this.transform.forward = player[0].transform.position;
+        animator.Play("Spawn");
     }
 
     void Update()
     {
+
         data.targetPosition = player[0].transform.position;
         data.my = this.gameObject;
-        FSM();
-    }
-    void LateUpdate()
-    {
-       
     }
 
     void FSM()
     {
-        
-        if(state == 1) animator.Play("Spawn");
-        float info = animator.GetCurrentAnimatorStateInfo(0).normalizedTime; //判斷動畫結束時間
-        if (info >= 0.84f)
+
+
+        doAI = SteeringBehavior.Seek(data);
+        switch (doAI)
         {
-            state = 2;
-            doAI = SteeringBehavior.Seek(data);
-            switch (doAI)
-            {
-                case 0:
-                    animator.SetBool("Walk Forward", false);
-                    animator.SetTrigger("Punch Attack");
-                    break;
-                case 1:
-                    animator.SetBool("Walk Forward", false);
-                    animator.SetTrigger("Breath Attack");
-                    break;
-                case 2:
-                    SteeringBehavior.Move(data);
-                    animator.SetBool("Walk Forward", true);
-                    break;
-            }
+            case 0:
+                animator.SetBool("Walk Forward", false);
+                animator.SetTrigger("Punch Attack");
+                break;
+            case 1:
+                animator.SetBool("Walk Forward", false);
+                animator.SetTrigger("Breath Attack");
+                break;
+            case 2:
+                SteeringBehavior.Move(data);
+                animator.SetBool("Walk Forward", true);
+                break;
         }
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawLine(transform.position, transform.position + transform.forward * 3.0f);
-    //}
 }

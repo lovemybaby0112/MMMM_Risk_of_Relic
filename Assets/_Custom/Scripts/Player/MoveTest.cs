@@ -5,7 +5,6 @@ using UnityEngine;
 public class MoveTest : MonoBehaviour
 {
     public GameObject gb; //給一個要控制的物件
-    public Transform camera;
     void Start()
     {
         gb = this.gameObject;
@@ -22,6 +21,6 @@ public class MoveTest : MonoBehaviour
                                           //這邊使用上面任一平移方法給速度，移動
         Vector3 vector3 = gb.transform.position + vMove * 10f * Time.deltaTime;
         gb.transform.position = vector3;
-        transform.forward = camera.forward; //轉向
+        //transform.Rotate(0.0f, fh, 0.0f); //轉向
     }
 }
