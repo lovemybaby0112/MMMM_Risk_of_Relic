@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class MobManager : MonoBehaviour
@@ -11,7 +12,7 @@ public class MobManager : MonoBehaviour
 
     List<Mobs> mobsList;
     int count; //怪物陣列總長度
-    Mobs[] threeMobs; //裝每次產生三隻怪的陣列
+    //Mobs[] threeMobs; //裝每次產生三隻怪的陣列
 
     //怪物生成位置座標的大小數值
     [HideInInspector]
@@ -26,7 +27,7 @@ public class MobManager : MonoBehaviour
     {
         MobManager_Ins = this;
         mobsList = new List<Mobs>();
-        threeMobs = new Mobs[3]; //讓外面一次產生三隻
+        //threeMobs = new Mobs[3]; //讓外面一次產生三隻
     }
 
     /// <summary>
@@ -59,13 +60,14 @@ public class MobManager : MonoBehaviour
     /// <returns></returns>
     public Mobs[] GetMob()
     {
+        Mobs[] threeMobs = new Mobs[3];
         count = mobsList.Count;
         for (int n = 0; n < threeMobs.Length; n++)
         {
             for (int i = 0; i < count; i++)
             {
                 if (mobsList[i].onUsing == false)
-                {
+                {                   
                     mobsList[i].onUsing = true;
                     //mob = mobsList[i].gameObject;
                     threeMobs[n] = mobsList[i];
@@ -111,18 +113,23 @@ public class MobManager : MonoBehaviour
         if (num < 6)
         {
             mob = GetMob();
-            for (int i = 0; i < mob.Length; i++)
+            var isNull = ArrayUtility.IndexOf(mob,null);
+            if(isNull < 0)
             {
-                ray = new Ray(mob[i].gameObject.transform.position, Vector3.down);
-                if (Physics.Raycast(ray, out hitInfo, 9999.0f, 1 << LayerMask.NameToLayer("Terrain")))
+                for (int i = 0; i < mob.Length; i++)
                 {
-                    //重新賦Y值，Y值等於射線打到的點，套在怪物身上記得把+0.5f拔掉，因為pivot會在腳上
-                    var mobP = mob[i].gameObject.transform.localPosition;
-                    mobP.y = hitInfo.point.y;
-                    mob[i].gameObject.transform.localPosition = mobP;                    
-                    mob[i].gameObject.SetActive(true);
+                    ray = new Ray(mob[i].gameObject.transform.position, Vector3.down);
+                    if (Physics.Raycast(ray, out hitInfo, 9999.0f, 1 << LayerMask.NameToLayer("Terrain")))
+                    {
+                        //重新賦Y值，Y值等於射線打到的點，套在怪物身上記得把+0.5f拔掉，因為pivot會在腳上
+                        var mobP = mob[i].gameObject.transform.localPosition;
+                        mobP.y = hitInfo.point.y;
+                        mob[i].gameObject.transform.localPosition = mobP;
+                        mob[i].gameObject.SetActive(true);
+                        //Debug.Log(mob[i].onUsing);
+                    }
+                    else mob[i].onUsing = false;
                 }
-                else mob[i].onUsing = false;
             }
         }
     }
