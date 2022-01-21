@@ -32,11 +32,11 @@ public class MobAI : MonoBehaviour
 
     void FSM()
     {
-        if(state == 1) animator.Play("Spawn");
         float info = animator.GetCurrentAnimatorStateInfo(0).normalizedTime; //判斷動畫結束時間
-        if(info >= 0.74f)
+        if (info >= 0.74f) state = 2;
+        if(state == 1) animator.Play("Spawn");
+        if (state == 2)
         {
-            state = 2;
             doAI = SteeringBehavior.Seek(data);
             switch (doAI)
             {
@@ -54,7 +54,6 @@ public class MobAI : MonoBehaviour
                     break;
             }
         }
-       
     }
 
 }

@@ -58,65 +58,56 @@ public class MobManager : MonoBehaviour
     /// 得到未再使用中的怪物物件，設定其位置，並把其設定為使用中
     /// </summary>
     /// <returns></returns>
-    public Mobs[] GetMob()
+    public List<Mobs> GetMob()
     {
-        Mobs[] threeMobs = new Mobs[3];
+        List<Mobs> threeMobs = new List<Mobs>();
         count = mobsList.Count;
-        for (int n = 0; n < threeMobs.Length; n++)
+        for (int n = 0; n < 3; n++)
         {
             for (int i = 0; i < count; i++)
             {
                 if (mobsList[i].onUsing == false)
-                {                   
+                {
                     mobsList[i].onUsing = true;
-                    //mob = mobsList[i].gameObject;
-                    threeMobs[n] = mobsList[i];
+                    threeMobs.Add(mobsList[i]);
                     break;
                 }
             }
-            //if (mob == null) return null;
-            
         }
-        threeMobs[0].gameObject.transform.position = new Vector3(Random.Range(minX, maxX), 50.0f, Random.Range(minZ, maxZ));//第一隻怪在box範圍內隨機出生
-        float mob1_X = threeMobs[0].gameObject.transform.position.x;
-        float mob1_Z = threeMobs[0].gameObject.transform.position.z;
-        //後面兩隻怪生在第一隻怪旁邊
-        threeMobs[1].gameObject.transform.position = new Vector3(Random.Range(mob1_X + 1, mob1_X + 5), 50.0f, Random.Range(mob1_Z + 1, mob1_Z + 5));
-        threeMobs[2].gameObject.transform.position = new Vector3(Random.Range(mob1_X - 1, mob1_X - 5), 50.0f, Random.Range(mob1_Z - 1, mob1_Z - 5));          
-        if (threeMobs == null) return null;
-        return threeMobs;
+        if (threeMobs[0] != null)
+        {
+            threeMobs[0].gameObject.transform.position = new Vector3(Random.Range(minX, maxX), 50.0f, Random.Range(minZ, maxZ));//第一隻怪在box範圍內隨機出生
+            float mob1_X = threeMobs[0].gameObject.transform.position.x;
+            float mob1_Z = threeMobs[0].gameObject.transform.position.z;
+            //後面兩隻怪生在第一隻怪旁邊
+            if (threeMobs[1] != null) 
+                threeMobs[1].gameObject.transform.position = new Vector3(Random.Range(mob1_X + 1, mob1_X + 5), 50.0f, Random.Range(mob1_Z + 1, mob1_Z + 5));
+            else return null;
+            if (threeMobs[2] != null)
+                threeMobs[2].gameObject.transform.position = new Vector3(Random.Range(mob1_X - 1, mob1_X - 5), 50.0f, Random.Range(mob1_Z - 1, mob1_Z - 5));
+            else return null;
+            return threeMobs;
+        }
+        else return null;
     }
-
-    /// <summary>
-    /// 把不在正確位置的怪物OnUse設成false
-    /// </summary>
-    /// <param name="gameObject"></param>
-    //public void SetMobOnUsingFalse(GameObject gameObject)
-    //{
-    //    for (int i = 0; i < count; i++)
-    //    {
-    //        if (mobsList[i].gameObject == gameObject) mobsList[i].onUsing = false;
-    //    }
-    //}
 
     #region 怪物出生
     /// <summary>
     /// 產卵(同時判定有沒有再有地板的地方出生)
     /// </summary>
-    public void Spawn()
+    public bool Spawn()
     {
-        Mobs[] mob;
+        List<Mobs> mob;
         Ray ray; //判斷怪物有沒有在正確位置的射線
         RaycastHit hitInfo; //擊中的資訊
         int num = Random.Range(0, 10);
-        //Debug.Log(num);
         if (num < 6)
         {
             mob = GetMob();
-            var isNull = ArrayUtility.IndexOf(mob,null);
-            if(isNull < 0)
+            if (mob == null) return false;
+            else
             {
-                for (int i = 0; i < mob.Length; i++)
+                for (int i = 0; i < mob.Count; i++)
                 {
                     ray = new Ray(mob[i].gameObject.transform.position, Vector3.down);
                     if (Physics.Raycast(ray, out hitInfo, 9999.0f, 1 << LayerMask.NameToLayer("Terrain")))
@@ -130,8 +121,10 @@ public class MobManager : MonoBehaviour
                     }
                     else mob[i].onUsing = false;
                 }
+                return true;
             }
         }
+        else return false;
     }
 
     /// <summary>
@@ -142,7 +135,10 @@ public class MobManager : MonoBehaviour
     {
         if (spawn)
         {
-            InvokeRepeating("Spawn", 3.0f, 1.0f);
+            if(Spawn())
+            {
+                InvokeRepeating("Spawn", 3.0f, 1.0f);
+            }
         }
         else CancelInvoke("Spawn"); //停止InvokeRepeating的方法
     }

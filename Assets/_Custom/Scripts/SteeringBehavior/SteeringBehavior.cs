@@ -5,12 +5,8 @@ using UnityEngine;
 
 public class SteeringBehavior
 {
-
-
-
     static public void Move(AIData data)
     {
-        
         if (data.doMove == false) return; //不做事
         else
         {          
@@ -31,7 +27,6 @@ public class SteeringBehavior
             myPosition = myPosition + my.forward * data.moveForce * Time.deltaTime; //移動
             my.position = myPosition;
         }
-
     }
 
     static public int Seek(AIData data)//Action action
