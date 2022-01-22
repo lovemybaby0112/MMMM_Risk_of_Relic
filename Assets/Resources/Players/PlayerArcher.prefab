@@ -1324,7 +1324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3493842147387249754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1179999, z: 0}
+  m_LocalPosition: {x: 0, y: 1.1179962, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3600211128107345947}
@@ -1946,8 +1946,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 3.62
-  m_Radius: 0.32
+  m_Height: 3.63
+  m_Radius: 1
   m_SlopeLimit: 45
   m_StepOffset: 0.25
   m_SkinWidth: 0.02
@@ -1965,17 +1965,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 12
-  SprintSpeed: 12
+  MoveSpeed: 18
+  SprintSpeed: 18
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
-  JumpHeight: 2.4
-  Gravity: -30
-  JumpTimeout: 0.3
-  FallTimeout: 0.4
+  JumpHeight: 3
+  Gravity: -50
+  JumpTimeout: 0.2
+  FallTimeout: 0.3
   Grounded: 1
-  GroundedOffset: -0.25
-  GroundedRadius: 0.28
+  GroundedOffset: -0.45
+  GroundedRadius: 0.9
   GroundLayers:
     serializedVersion: 2
     m_Bits: 896
@@ -2317,7 +2317,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4604435615001940995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.118, z: 0.03255081}
+  m_LocalPosition: {x: 0, y: 4.117996, z: -6.3083076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4883756902451849856}
@@ -2346,7 +2346,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.2
+  near clip plane: 0.01
   far clip plane: 3000
   field of view: 50
   orthographic: 0
@@ -2437,7 +2437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 0}
+  volumeTrigger: {fileID: 4604435615001940998}
   volumeLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -3460,10 +3460,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: {x: 0.1, y: 0.25, z: 0.3}
-  ShoulderOffset: {x: 0, y: 2, z: 0}
+  ShoulderOffset: {x: 0, y: 3, z: 0}
   VerticalArmLength: 0
   CameraSide: 0.5
-  CameraDistance: 10
+  CameraDistance: 13
   CameraCollisionFilter:
     serializedVersion: 2
     m_Bits: 896
@@ -3494,7 +3494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6880357498645069526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.118, z: 0.03255081}
+  m_LocalPosition: {x: 0, y: 4.117996, z: -6.3083076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6880357498198920941}
@@ -3524,7 +3524,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 50
     OrthographicSize: 10
-    NearClipPlane: 0.2
+    NearClipPlane: 0.001
     FarClipPlane: 3000
     Dutch: 0
     LensShift: {x: 0, y: 0}
