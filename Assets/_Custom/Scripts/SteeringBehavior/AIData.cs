@@ -23,9 +23,6 @@ public class AIData
     public float mobSpellAttackRange; //法術攻擊距離
     public float mobSpeed; //怪物速度
 
-    //~~~~~~~for 碰撞迴避~~~~~~~~~
-    public float collProbeLength; //探針長度
-
 
 
 

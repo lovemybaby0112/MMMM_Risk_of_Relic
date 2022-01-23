@@ -96,9 +96,4 @@ public class SteeringBehavior
         SpellAttack = 1,
         Move = 2,
     }
-
-    static public bool CheckObstacleRange(AIData data)
-    {
-
-    }
 }
