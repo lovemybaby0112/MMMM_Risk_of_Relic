@@ -56,4 +56,24 @@ public class MobAI : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        if(data != null)
+        {
+            Vector3 newPivot = new Vector3(this.transform.position.x, this.transform.position.y + 0.5f, this.transform.position.z);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(newPivot, newPivot + this.transform.forward * data.collProbeLength);
+            Gizmos.color = Color.red;
+            Vector3 vLastTemp = -this.transform.right;
+            for (int i = 1; i < 180; i++)
+            {
+                Vector3 vTemp = Quaternion.Euler(0.0f, 1.0f * i, 0.0f) * -this.transform.right;
+                Vector3 vStart = newPivot + vLastTemp * data.collProbeLength;
+                Vector3 vEnd = newPivot + vTemp * data.collProbeLength;
+                vLastTemp = vTemp;
+                Gizmos.DrawLine(vStart, vEnd);
+            }
+        }
+    }
+
 }
