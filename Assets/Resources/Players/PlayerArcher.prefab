@@ -1946,10 +1946,10 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 3.63
-  m_Radius: 1
-  m_SlopeLimit: 45
-  m_StepOffset: 0.25
+  m_Height: 3.68
+  m_Radius: 0.48
+  m_SlopeLimit: 60
+  m_StepOffset: 0.65
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1.84, z: 0}
@@ -1971,11 +1971,11 @@ MonoBehaviour:
   SpeedChangeRate: 10
   JumpHeight: 3
   Gravity: -50
-  JumpTimeout: 0.2
+  JumpTimeout: 0.4
   FallTimeout: 0.3
   Grounded: 1
-  GroundedOffset: -0.45
-  GroundedRadius: 0.9
+  GroundedOffset: -0.24
+  GroundedRadius: 0.48
   GroundLayers:
     serializedVersion: 2
     m_Bits: 896
@@ -2317,7 +2317,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4604435615001940995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.117996, z: -6.3083076}
+  m_LocalPosition: {x: 0, y: 4.117996, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4883756902451849856}
@@ -3468,7 +3468,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 896
   IgnoreTag: Player
-  CameraRadius: 0.65
+  CameraRadius: 0.3
 --- !u!1 &6880357498645069526
 GameObject:
   m_ObjectHideFlags: 0
@@ -3494,7 +3494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6880357498645069526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.117996, z: -6.3083076}
+  m_LocalPosition: {x: 0, y: 4.117996, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6880357498198920941}

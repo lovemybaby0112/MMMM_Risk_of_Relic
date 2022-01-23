@@ -222,6 +222,15 @@ namespace StarterAssets
 
 			// move the player
 			_controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+			if(_speed>0.001f)
+			{
+				ChangeCharacterControllerCollider(1.2f);
+			}
+			if (_speed <= 0.001f)
+			{
+				ChangeCharacterControllerCollider(0.48f);
+			}
+
 
 			// update animator if using character
 			if (_hasAnimator)
@@ -317,6 +326,11 @@ namespace StarterAssets
 			
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
+		}
+
+		void ChangeCharacterControllerCollider(float f)
+		{
+			_controller.radius = f;
 		}
 	}
 }
