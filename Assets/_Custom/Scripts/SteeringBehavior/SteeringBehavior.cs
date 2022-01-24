@@ -97,8 +97,10 @@ public class SteeringBehavior
         Move = 2,
     }
 
-    //static public bool CollisiionAvoid(AIData data)
-    //{
+    static public bool CollisiionAvoid(AIData data)
+    {
+        List<GameObject> avoidTargets = GameManager.gameManagerIns.GetObstacles(); //接住所有障礙物
 
-    //}
+        return false;
+    }
 }
