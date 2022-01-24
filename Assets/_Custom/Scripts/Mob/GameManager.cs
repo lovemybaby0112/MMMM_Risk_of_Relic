@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
+    private List<GameObject> obstacles;
     void Start()
     {
         #region 創建怪物物件
