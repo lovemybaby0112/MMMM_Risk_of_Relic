@@ -7,6 +7,7 @@ TagManager:
   - Sound
   - Mob
   - GameCanvas
+  - Obstacle
   layers:
   - Default
   - TransparentFX

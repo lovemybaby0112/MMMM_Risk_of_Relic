@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManagerIns;
-    private List<GameObject> obstacles;
+    private List<Obstacle> obstacles;
 
     private void Awake()
     {
@@ -20,23 +20,25 @@ public class GameManager : MonoBehaviour
             MobManager.Instance().CreateMobs(mobname);
         }
         #endregion
-        obstacles = new List<GameObject>();
+        obstacles = new List<Obstacle>();
         GameObject[] gos = GameObject.FindGameObjectsWithTag("Obstacle");
         if (gos != null || gos.Length > 0)
         {
-            //Debug.Log(gos.Length);
+            //Debug.Log(gos[0]);
             foreach (GameObject go in gos)
             {
-                obstacles.Add(go);
+                //Debug.Log(go);
+                obstacles.Add(go.GetComponent<Obstacle>());
+                Debug.Log(obstacles[0]);
             }
         }
     }
 
     void Update()
     {
-        
+
     }
-    public List<GameObject> GetObstacles()
+    public List<Obstacle> GetObstacles()
     {
         return obstacles;
     }

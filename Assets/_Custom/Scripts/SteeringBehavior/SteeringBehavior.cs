@@ -99,8 +99,90 @@ public class SteeringBehavior
 
     static public bool CollisiionAvoid(AIData data)
     {
-        List<GameObject> avoidTargets = GameManager.gameManagerIns.GetObstacles(); //接住所有障礙物
+        List<Obstacle> avoidTargets = GameManager.gameManagerIns.GetObstacles(); //接住所有障礙物
+        Transform myTrans = data.my.transform;
+        Vector3 myPos = myTrans.position;
+        Vector3 myForward = myTrans.forward;
+        data.myCurrentVector = myForward;
+        Vector3 vec;
+        float fFinalDotDist;
+        float fFinalProjDist;
+        Vector3 vFinalVec = Vector3.forward;
+        Obstacle oFinal = null;
+        float fDist = 0.0f;
+        float fDot = 0.0f;
+        float fFinalDot = 0.0f;
+        int iCount = avoidTargets.Count;
+        //Debug.Log(avoidTargets[0]);
 
+        float fMinDist = 10000.0f;
+        for (int i = 0; i < iCount; i++)
+        {
+            vec = avoidTargets[i].transform.position - myPos;
+
+            vec.y = 0.0f;
+            fDist = vec.magnitude;
+            if (fDist > data.myProbeLength + avoidTargets[i].myRadius)
+            {
+                avoidTargets[i].m_eState = Obstacle.eState.OUTSIDE_TEST;
+                continue;
+            }
+
+            vec.Normalize();
+            fDot = Vector3.Dot(vec, myForward);
+            if (fDot < 0)
+            {
+                avoidTargets[i].m_eState = Obstacle.eState.OUTSIDE_TEST;
+                continue;
+            }
+            else if (fDot > 1.0f)
+            {
+                fDot = 1.0f;
+            }
+            avoidTargets[i].m_eState = Obstacle.eState.INSIDE_TEST;
+            float fProjDist = fDist * fDot;
+            float fDotDist = Mathf.Sqrt(fDist * fDist - fProjDist * fProjDist);
+            if (fDotDist > avoidTargets[i].myRadius + data.myRadius)
+            {
+                continue;
+            }
+
+            if (fDist < fMinDist)
+            {
+                fMinDist = fDist;
+                fFinalDotDist = fDotDist;
+                fFinalProjDist = fProjDist;
+                vFinalVec = vec;
+                oFinal = avoidTargets[i];
+                fFinalDot = fDot;
+            }
+
+        }
+
+        if (oFinal != null)
+        {
+            Vector3 vCross = Vector3.Cross(myForward, vFinalVec);
+            float fTurnMag = Mathf.Sqrt(1.0f - fFinalDot * fFinalDot);
+            if (vCross.y > 0.0f)
+            {
+                fTurnMag = -fTurnMag;
+            }
+            data.turnForce = fTurnMag;
+
+            float fTotalLen = data.myProbeLength + oFinal.myRadius;
+            float fRatio = fMinDist / fTotalLen;
+            if (fRatio > 1.0f)
+            {
+                fRatio = 1.0f;
+            }
+            fRatio = 1.0f - fRatio;
+            data.moveForce = -fRatio;
+            oFinal.m_eState = Obstacle.eState.COL_TEST;
+            data.doCol = true;
+            data.doMove = true;
+            return true;
+        }
+        data.doCol = false;
         return false;
     }
 }

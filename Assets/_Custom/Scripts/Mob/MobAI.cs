@@ -37,7 +37,10 @@ public class MobAI : MonoBehaviour
         if(state == 1) animator.Play("Spawn");
         if (state == 2)
         {
-            doAI = SteeringBehavior.Seek(data);
+            if(SteeringBehavior.CollisiionAvoid(data) == false)
+            {
+                doAI = SteeringBehavior.Seek(data);
+            }
             switch (doAI)
             {
                 case 0:

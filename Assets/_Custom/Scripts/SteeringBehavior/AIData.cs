@@ -18,13 +18,16 @@ public class AIData
     [HideInInspector]
     public bool doMove; //移動
     [HideInInspector]
+    public bool doCol; //碰撞
+    [HideInInspector]
     public Vector3 myCurrentVector; //當前速率
     public float mobMeleeAttackRange; //進戰攻擊距離
     public float mobSpellAttackRange; //法術攻擊距離
     public float mobSpeed; //怪物速度
 
 
-
-
+    //~~~~~~~for 碰撞~~~~~~~~~
+    public float myProbeLength;
+    public float myRadius;
 
 }
