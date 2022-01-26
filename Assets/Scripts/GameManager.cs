@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour
     }
     void LoadPlayer()
     {
-        Transform PlayerSpwanPoint = GameObject.Find("PlayerSpwanPoint").transform;
-        Instantiate(Resources.Load("Players/PlayerArcher"), PlayerSpwanPoint.position, PlayerSpwanPoint.rotation);
+        Transform PlayerSpawnPoint = GameObject.Find("PlayerSpawnPoint").transform;
+        Instantiate(Resources.Load("Players/PlayerArcher"), PlayerSpawnPoint.position, PlayerSpawnPoint.rotation);
     }
     public List<Obstacle> GetObstacles()
     {
