@@ -15,23 +15,22 @@ public class GameManager : MonoBehaviour
     {
         #region 創建怪物物件
         string mobname = "Mushroom";
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 100; i++)
         {
             MobManager.Instance().CreateMobs(mobname);
         }
         #endregion
+        #region 抓取障礙物
         obstacles = new List<Obstacle>();
         GameObject[] gos = GameObject.FindGameObjectsWithTag("Obstacle");
         if (gos != null || gos.Length > 0)
         {
-            //Debug.Log(gos[0]);
             foreach (GameObject go in gos)
             {
-                //Debug.Log(go);
                 obstacles.Add(go.GetComponent<Obstacle>());
-                Debug.Log(obstacles[0]);
             }
         }
+        #endregion
     }
     void LoadPlayer()
     {
