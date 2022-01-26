@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Cinemachine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -24,6 +25,7 @@ namespace StarterAssets
 		public float RotationSmoothTime = 0.12f;
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
+		public float sensitivity = 1f;
 
 		[Space(10)]
 		[Tooltip("The height the player can jump")]
@@ -87,6 +89,10 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+		[SerializeField] private CinemachineVirtualCamera _Cinemachine;
+		public LayerMask attackMask;
+
+		public Transform debugBall;
 
 		private const float _threshold = 0.01f;
 
@@ -100,6 +106,8 @@ namespace StarterAssets
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
 			_resetCamera = transform.parent.rotation.eulerAngles.y;
+
+			Cursor.lockState = CursorLockMode.Locked;
 		}
 
 		private void Start()
@@ -123,6 +131,7 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			Attack();
 		}
 
 		private void LateUpdate()
@@ -159,8 +168,8 @@ namespace StarterAssets
 			// if there is an input and camera position is not fixed
 			if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
 			{
-				_cinemachineTargetYaw += _input.look.x * Time.deltaTime;
-				_cinemachineTargetPitch += _input.look.y * Time.deltaTime;
+				_cinemachineTargetYaw += _input.look.x * Time.deltaTime * sensitivity;
+				_cinemachineTargetPitch += _input.look.y * Time.deltaTime * sensitivity;
 			}
 			// clamp our rotations so our values are limited 360 degrees
 			_cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
@@ -332,5 +341,22 @@ namespace StarterAssets
 		{
 			_controller.radius = f;
 		}
+
+		void Attack()
+        {
+            if (_input.attack)
+            {
+				_Cinemachine.gameObject.SetActive(true);
+			}
+
+			Vector3 screenCenterPoint = new Vector3(Screen.height * 2, Screen.width *2, 0);
+			Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			if(Physics.Raycast(_ray , out RaycastHit hit, 1000f, attackMask))
+            {
+				debugBall.transform.position = hit.point;
+            }
+			Debug.Log(screenCenterPoint);
+			Debug.DrawLine(Input.mousePosition, hit.point, Color.red, 0.1f);
+        }
 	}
 }
