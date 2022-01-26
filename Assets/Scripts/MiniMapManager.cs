@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MiniMapManager : MonoBehaviour
 {
-    public RectTransform playerIcon;
+    public RectTransform playerLocationIcon;
     public RectTransform miniMapEnd;
     public Transform defindMapSizeCenter;
     public Transform defindMapSizeEnd;
@@ -42,12 +42,12 @@ public class MiniMapManager : MonoBehaviour
         normalized.y = normalized.z;
         mapped = MapMultiply(normalized, miniMapEnd.localPosition);
         mapped.z = 0;
-        playerIcon.localPosition = mapped;
-        playerIcon.localEulerAngles = new Vector3(0.0f, 0.0f, -playerInGame.eulerAngles.y);
+        playerLocationIcon.localPosition = mapped;
+        playerLocationIcon.localEulerAngles = new Vector3(0.0f, 0.0f, -playerInGame.eulerAngles.y);
     }
     void GetMiniMapGameObjects()
     {
-        playerIcon = GameObject.Find("PlayerIcon").transform as RectTransform;
+        playerLocationIcon = GameObject.Find("PlayerLocationIcon").transform as RectTransform;
         miniMapEnd = GameObject.Find("MiniMapEnd").transform as RectTransform;
         defindMapSizeCenter = GameObject.Find("MapSizeCenter").transform;
         defindMapSizeEnd = GameObject.Find("MapSizeEnd").transform;
