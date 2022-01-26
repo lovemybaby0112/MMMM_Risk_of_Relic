@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class MobGameManager : MonoBehaviour
 {
     public static GameManager gameManagerIns;
     private List<Obstacle> obstacles;
 
     private void Awake()
     {
-        gameManagerIns = this;
+        //gameManagerIns = this;
     }
     void Start()
     {
