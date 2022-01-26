@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9169912361777990126}
+  - component: {fileID: 3024849120438859129}
   m_Layer: 7
   m_Name: Ruins03
   m_TagString: Obstacle
@@ -36,6 +37,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3024849120438859129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169912361777990127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c7d0d75bd987948baa73b8b9d354dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRadius: 1
+  m_eState: -1
 --- !u!1001 &9169912360059901366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,6 +116,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1927385280657385532, guid: 5c7e017c2e16c7e44b7c94d5abc02140, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389503505788065448, guid: 5c7e017c2e16c7e44b7c94d5abc02140, type: 3}
+      propertyPath: myRadius
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -173,6 +192,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6884209685616304916, guid: 711097582b7d758479c7af2dbebb5695, type: 3}
+      propertyPath: myRadius
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 711097582b7d758479c7af2dbebb5695, type: 3}
 --- !u!4 &7521989640946541258 stripped
@@ -187,6 +210,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9169912361777990126}
     m_Modifications:
+    - target: {fileID: 1020377708546855354, guid: 29b1dd494f190f647bdfc68caed1a87f, type: 3}
+      propertyPath: myRadius
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1491977491152237447, guid: 29b1dd494f190f647bdfc68caed1a87f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -257,6 +284,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9169912361777990126}
     m_Modifications:
+    - target: {fileID: 1020377708546855354, guid: 29b1dd494f190f647bdfc68caed1a87f, type: 3}
+      propertyPath: myRadius
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1491977491152237447, guid: 29b1dd494f190f647bdfc68caed1a87f, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -371,6 +402,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.753
       objectReference: {fileID: 0}
+    - target: {fileID: 4241678274746695970, guid: a9188a11366d5e74a876630f8b82dbec, type: 3}
+      propertyPath: myRadius
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4365220049634515623, guid: a9188a11366d5e74a876630f8b82dbec, type: 3}
       propertyPath: m_Name
       value: ArchBroken01
@@ -397,6 +432,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9169912361777990126}
     m_Modifications:
+    - target: {fileID: 1020377708546855354, guid: 29b1dd494f190f647bdfc68caed1a87f, type: 3}
+      propertyPath: myRadius
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1491977491152237447, guid: 29b1dd494f190f647bdfc68caed1a87f, type: 3}
       propertyPath: m_RootOrder
       value: 3

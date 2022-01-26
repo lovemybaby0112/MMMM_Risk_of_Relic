@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1476120208145009788}
   - component: {fileID: 2022016264109054648}
+  - component: {fileID: 3677366257027748343}
   m_Layer: 9
   m_Name: TallTree03
   m_TagString: Obstacle
@@ -56,6 +57,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5839945284921467523}
   m_Enabled: 1
+--- !u!114 &3677366257027748343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2461043863353343599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c7d0d75bd987948baa73b8b9d354dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRadius: 1
+  m_eState: -1
 --- !u!1 &3413619153424399398
 GameObject:
   m_ObjectHideFlags: 0

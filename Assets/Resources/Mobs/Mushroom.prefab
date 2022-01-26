@@ -1195,7 +1195,7 @@ MonoBehaviour:
     myCurrentVector: {x: 0, y: 0, z: 0}
     mobMeleeAttackRange: 1
     mobSpellAttackRange: 6
-    mobSpeed: 6
+    mobSpeed: 10
     myProbeLength: 0
     myRadius: 0
 --- !u!114 &1029151560575120200

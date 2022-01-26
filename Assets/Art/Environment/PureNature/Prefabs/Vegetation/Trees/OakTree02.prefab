@@ -189,6 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3799578387175572401}
   - component: {fileID: 8277844539252978880}
+  - component: {fileID: 3039149523522378318}
   m_Layer: 9
   m_Name: OakTree02
   m_TagString: Obstacle
@@ -240,6 +241,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 3046783442267225437}
   m_Enabled: 1
+--- !u!114 &3039149523522378318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4607464743734237451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c7d0d75bd987948baa73b8b9d354dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRadius: 1
+  m_eState: -1
 --- !u!1 &5499631090099589562
 GameObject:
   m_ObjectHideFlags: 0

@@ -188,6 +188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7201187876938413230}
   - component: {fileID: 95124033297735763}
+  - component: {fileID: -5519361139839847743}
   m_Layer: 9
   m_Name: PineTree04
   m_TagString: Obstacle
@@ -234,3 +235,17 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4073958725546488592}
   m_Enabled: 1
+--- !u!114 &-5519361139839847743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7697714672627119296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c7d0d75bd987948baa73b8b9d354dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRadius: 1
+  m_eState: -1
