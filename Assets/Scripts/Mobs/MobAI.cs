@@ -27,7 +27,7 @@ public class MobAI : MonoBehaviour
     {
         data.targetPosition = player[0].transform.position;
         data.my = this.gameObject;
-        FSM();
+        //FSM();
     }
 
     void FSM()
