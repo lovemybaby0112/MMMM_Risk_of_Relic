@@ -268,9 +268,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5287821864464083976}
   - component: {fileID: 6098997961078397388}
+  - component: {fileID: 797317455685434228}
   m_Layer: 7
   m_Name: Boulder05
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
@@ -319,3 +320,17 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5821579437877177100}
   m_Enabled: 1
+--- !u!114 &797317455685434228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167433424300547611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c7d0d75bd987948baa73b8b9d354dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRadius: 1
+  m_eState: -1

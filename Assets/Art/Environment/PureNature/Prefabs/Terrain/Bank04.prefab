@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2221016602366240145}
   - component: {fileID: 4122576641473384795}
   - component: {fileID: -9037387422215347628}
+  - component: {fileID: -3870961054006440850}
   m_Layer: 7
   m_Name: Bank04
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
@@ -96,3 +97,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8617958349907029235, guid: 288de837ca85a8546a4705f04cfc87f9, type: 3}
+--- !u!114 &-3870961054006440850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2465344680413868174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c7d0d75bd987948baa73b8b9d354dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRadius: 1
+  m_eState: -1

@@ -20,18 +20,17 @@ public class GameManager : MonoBehaviour
             MobManager.Instance().CreateMobs(mobname);
         }
         #endregion
+        #region §ì¨ú»ÙÃªª«
         obstacles = new List<Obstacle>();
         GameObject[] gos = GameObject.FindGameObjectsWithTag("Obstacle");
         if (gos != null || gos.Length > 0)
         {
-            //Debug.Log(gos[0]);
             foreach (GameObject go in gos)
             {
-                //Debug.Log(go);
                 obstacles.Add(go.GetComponent<Obstacle>());
-                Debug.Log(obstacles[0]);
             }
         }
+        #endregion
     }
     void LoadPlayer()
     {

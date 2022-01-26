@@ -76,15 +76,15 @@ public class MobManager : MonoBehaviour
         }
         if (threeMobs[0] != null)
         {
-            threeMobs[0].gameObject.transform.position = new Vector3(Random.Range(minX, maxX), 50.0f, Random.Range(minZ, maxZ));//第一隻怪在box範圍內隨機出生
+            threeMobs[0].gameObject.transform.position = new Vector3(Random.Range(minX, maxX), 999.0f, Random.Range(minZ, maxZ));//第一隻怪在box範圍內隨機出生
             float mob1_X = threeMobs[0].gameObject.transform.position.x;
             float mob1_Z = threeMobs[0].gameObject.transform.position.z;
             //後面兩隻怪生在第一隻怪旁邊
             if (threeMobs[1] != null) 
-                threeMobs[1].gameObject.transform.position = new Vector3(Random.Range(mob1_X + 1, mob1_X + 5), 50.0f, Random.Range(mob1_Z + 1, mob1_Z + 5));
+                threeMobs[1].gameObject.transform.position = new Vector3(Random.Range(mob1_X + 1, mob1_X + 5), 999.0f, Random.Range(mob1_Z + 1, mob1_Z + 5));
             else return null;
             if (threeMobs[2] != null)
-                threeMobs[2].gameObject.transform.position = new Vector3(Random.Range(mob1_X - 1, mob1_X - 5), 50.0f, Random.Range(mob1_Z - 1, mob1_Z - 5));
+                threeMobs[2].gameObject.transform.position = new Vector3(Random.Range(mob1_X - 1, mob1_X - 5), 999.0f, Random.Range(mob1_Z - 1, mob1_Z - 5));
             else return null;
             return threeMobs;
         }
@@ -108,9 +108,9 @@ public class MobManager : MonoBehaviour
             else
             {
                 for (int i = 0; i < mob.Count; i++)
-                {
+                {                  
                     ray = new Ray(mob[i].gameObject.transform.position, Vector3.down);
-                    if (Physics.Raycast(ray, out hitInfo, 9999.0f, 1 << LayerMask.NameToLayer("Terrain")))
+                    if (Physics.Raycast(ray, out hitInfo, 9999.0f, 1 << LayerMask.NameToLayer("Ground")))
                     {
                         //重新賦Y值，Y值等於射線打到的點，套在怪物身上記得把+0.5f拔掉，因為pivot會在腳上
                         var mobP = mob[i].gameObject.transform.localPosition;
@@ -137,7 +137,7 @@ public class MobManager : MonoBehaviour
         {
             if(Spawn())
             {
-                InvokeRepeating("Spawn", 3.0f, 1.0f);
+                InvokeRepeating("Spawn", 3.0f, 3.0f);
             }
         }
         else CancelInvoke("Spawn"); //停止InvokeRepeating的方法

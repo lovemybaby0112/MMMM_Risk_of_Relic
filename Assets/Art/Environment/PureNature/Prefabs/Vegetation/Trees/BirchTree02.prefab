@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1666635370639640719}
   - component: {fileID: 2257018767917309515}
+  - component: {fileID: -2107576940597970595}
   m_Layer: 9
   m_Name: BirchTree02
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,6 +57,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4881718516375639691}
   m_Enabled: 1
+--- !u!114 &-2107576940597970595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2412326118951828124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c7d0d75bd987948baa73b8b9d354dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRadius: 1
+  m_eState: -1
 --- !u!1 &3729039507954500642
 GameObject:
   m_ObjectHideFlags: 0
