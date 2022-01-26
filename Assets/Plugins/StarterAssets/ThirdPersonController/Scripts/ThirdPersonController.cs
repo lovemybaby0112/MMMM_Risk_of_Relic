@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Cinemachine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -58,6 +59,7 @@ namespace StarterAssets
 		public float CameraAngleOverride = 0.0f;
 		[Tooltip("For locking the camera position on all axis")]
 		public bool LockCameraPosition = false;
+		public CinemachineVirtualCamera _cinemachineVirtualCamera;
 
 		// cinemachine
 		private float _cinemachineTargetYaw;
@@ -82,11 +84,14 @@ namespace StarterAssets
 		private int _animIDJump;
 		private int _animIDFreeFall;
 		private int _animIDMotionSpeed;
+		private int _animIDAttack;
+
 
 		private Animator _animator;
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+		
 
 		private const float _threshold = 0.01f;
 
@@ -123,6 +128,7 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			Attack();
 		}
 
 		private void LateUpdate()
@@ -138,6 +144,7 @@ namespace StarterAssets
 			_animIDJump = Animator.StringToHash("Jump");
 			_animIDFreeFall = Animator.StringToHash("FreeFall");
 			_animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+			_animIDAttack = Animator.StringToHash("Attack");
 		}
 
 		private void GroundedCheck()
@@ -159,8 +166,8 @@ namespace StarterAssets
 			// if there is an input and camera position is not fixed
 			if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
 			{
-				_cinemachineTargetYaw += _input.look.x * Time.deltaTime;
-				_cinemachineTargetPitch += _input.look.y * Time.deltaTime;
+				_cinemachineTargetYaw += _input.look.x * Time.deltaTime * 1f;
+				_cinemachineTargetPitch += _input.look.y * Time.deltaTime *1f;
 			}
 			// clamp our rotations so our values are limited 360 degrees
 			_cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
@@ -331,6 +338,26 @@ namespace StarterAssets
 		void ChangeCharacterControllerCollider(float f)
 		{
 			_controller.radius = f;
+		}
+
+		void Attack()
+		{
+			if (Input.GetAxis("Fire1")!= 0)
+			{
+				_animator.SetBool(_animIDAttack, true);
+				//transform.rotation = Quaternion.Euler(0.0f,_cinemachineVirtualCamera.transform.rotation.y, 0.0f);
+
+				float x = Input.GetAxis("Horizontal");
+				float y = Input.GetAxis("Vertical");
+
+				_animator.SetFloat("X", x);
+				_animator.SetFloat("Y", y);
+			}
+			else
+			{
+				_animator.SetBool(_animIDAttack, false);
+			}
+			
 		}
 	}
 }
