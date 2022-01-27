@@ -47,6 +47,7 @@ namespace StarterAssets
 		public float GroundedRadius = 0.56f;
 		[Tooltip("What layers the character uses as ground")]
 		public LayerMask GroundLayers;
+		public LayerMask attackLayers;
 
 		[Header("Cinemachine")]
 		[Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
@@ -91,6 +92,7 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+
 		
 
 		private const float _threshold = 0.01f;
@@ -109,6 +111,7 @@ namespace StarterAssets
 
 		private void Start()
 		{
+			Cursor.lockState = CursorLockMode.Locked;
 			Debug.Log(_resetCamera);
 			_hasAnimator = TryGetComponent(out _animator);
 			_controller = GetComponent<CharacterController>();
@@ -342,10 +345,24 @@ namespace StarterAssets
 
 		void Attack()
 		{
+			Vector3 mouseWorldPosition = Vector3.zero;
+			Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
+			Ray attackRay = Camera.main.ScreenPointToRay(screenCenterPoint); 
 			if (Input.GetAxis("Fire1")!= 0)
 			{
+				Physics.Raycast(attackRay, out RaycastHit raycastHit, 1000f, attackLayers);
+
+				mouseWorldPosition = raycastHit.point;
+				Debug.Log(mouseWorldPosition);
+				
+
+				Vector3 worldAimTarget = mouseWorldPosition;
+				mouseWorldPosition.y = transform.position.y;
+				Vector3 mouseDir = (worldAimTarget - transform.position).normalized;
+
+				transform.forward = Vector3.Lerp(transform.forward, mouseDir, Time.deltaTime * 20f);
+
 				_animator.SetBool(_animIDAttack, true);
-				//transform.rotation = Quaternion.Euler(0.0f,_cinemachineVirtualCamera.transform.rotation.y, 0.0f);
 
 				float x = Input.GetAxis("Horizontal");
 				float y = Input.GetAxis("Vertical");
