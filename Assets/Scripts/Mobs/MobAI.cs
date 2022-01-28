@@ -8,7 +8,7 @@ public class MobAI : MonoBehaviour
     float state;
     public AIData data;
     GameObject[] player;
-    int doAI; //要做甚麼AI
+    public int doAI; //要做甚麼AI
     Animator animator;
 
     bool startSeek = false;
@@ -44,17 +44,20 @@ public class MobAI : MonoBehaviour
             switch (doAI)
             {
                 case 0:
-                    animator.SetBool("Walk Forward", false);
+                    //animator.SetBool("Walk Forward", false);
                     animator.SetTrigger("Punch Attack");
                     break;
                 case 1:
-                    animator.SetBool("Walk Forward", false);
+                    //animator.SetBool("Walk Forward", false);
                     animator.SetTrigger("Breath Attack");
                     break;
                 case 2:
                     SteeringBehavior.Move(data);
                     animator.SetBool("Walk Forward", true);
                     break;
+                case 3:
+                    break;
+
             }
         }
     }

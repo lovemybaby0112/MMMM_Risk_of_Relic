@@ -14,6 +14,7 @@ public class MobHp : MonoBehaviour
     private float hpBarRectWidth; //血條UI的長度
     private RectTransform hpUIRect;
     private RectTransform hpBar, hurt;
+    MobAI mobAI;
     private void Awake()
     {
         mobName = this.gameObject.name;
@@ -44,6 +45,7 @@ public class MobHp : MonoBehaviour
     void Update()
     {
         PHFollowEnemy();
+        GetHurt();
     }
     void PHFollowEnemy()
     {
@@ -59,9 +61,13 @@ public class MobHp : MonoBehaviour
 
     void GetHurt()
     {
-        currentHealth -= 10;
+
         ////按下H鈕扣血
-        //if (Input.GetKeyDown(KeyCode.H))接受傷害
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            //接受傷害
+            currentHealth -= 10;
+        }
 
         float healthPercent = currentHealth / maxHealth * hpBarRectWidth;
 
@@ -79,15 +85,17 @@ public class MobHp : MonoBehaviour
         if(healthPercent <= 0)
         {
             healthPercent = 0;
+            Destroy(hpUI);
+            MobManager.Instance().ResetMob(this.gameObject);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag =="attack")
-        {
-            GetHurt();
-        }
-        Destroy(other);
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.gameObject.tag =="attack")
+    //    {
+    //        GetHurt();
+    //    }
+    //    Destroy(other);
+    //}
 }

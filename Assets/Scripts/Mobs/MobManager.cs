@@ -91,6 +91,22 @@ public class MobManager : MonoBehaviour
         else return null;
     }
 
+    /// <summary>
+    /// 怪物死亡重置
+    /// </summary>
+    public void ResetMob(GameObject mob)
+    {
+        int iCount = mobsList.Count;
+        for (int i = 0; i < iCount; i++)
+        {
+            if (mobsList[i].gameObject == mob)
+            {
+                mobsList[i].gameObject.SetActive(false);
+                mobsList[i].onUsing = false;
+                break;
+            }
+        }
+    }
     #region 怪物出生
     /// <summary>
     /// 產卵(同時判定有沒有再有地板的地方出生)
