@@ -91,11 +91,8 @@ namespace StarterAssets
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
 		[SerializeField] private CinemachineVirtualCamera _Cinemachine;
-		public LayerMask attackMask;
 
-		public Transform debugBall;
 
-		[SerializeField] private CinemachineVirtualCamera _Cinemachine;
 		public GameObject debugBall;
 
 		private const float _threshold = 0.01f;
@@ -132,7 +129,7 @@ namespace StarterAssets
 		private void Update()
 		{
 			_hasAnimator = TryGetComponent(out _animator);
-			
+
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
@@ -181,7 +178,7 @@ namespace StarterAssets
 			_cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
 
 			// Cinemachine will follow this target
-			CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw+_resetCamera, 0.0f);
+			CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw + _resetCamera, 0.0f);
 		}
 
 		private void Move()
@@ -236,7 +233,7 @@ namespace StarterAssets
 
 			// move the player
 			_controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-			if(_speed>0.001f)
+			if (_speed > 0.001f)
 			{
 				ChangeCharacterControllerCollider(1.2f);
 			}
@@ -337,7 +334,7 @@ namespace StarterAssets
 
 			if (Grounded) Gizmos.color = transparentGreen;
 			else Gizmos.color = transparentRed;
-			
+
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
@@ -348,23 +345,7 @@ namespace StarterAssets
 		}
 
 		void Attack()
-<<<<<<< Updated upstream
-        {
-            if (_input.attack)
-            {
-				_Cinemachine.gameObject.SetActive(true);
-			}
 
-			Vector3 screenCenterPoint = new Vector3(Screen.height * 2, Screen.width *2, 0);
-			Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if(Physics.Raycast(_ray , out RaycastHit hit, 1000f, attackMask))
-            {
-				debugBall.transform.position = hit.point;
-            }
-			Debug.Log(screenCenterPoint);
-			Debug.DrawLine(Input.mousePosition, hit.point, Color.red, 0.1f);
-        }
-=======
 		{
 			if (_input.attack)
 			{
@@ -379,8 +360,7 @@ namespace StarterAssets
 			}
 
 			Vector3 screenCenterPoint = new Vector3(Screen.height * 2, Screen.width * 2, 0);
-			
 		}
->>>>>>> Stashed changes
+
 	}
 }
