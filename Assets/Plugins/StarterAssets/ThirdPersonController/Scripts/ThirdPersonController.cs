@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Cinemachine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -88,6 +89,9 @@ namespace StarterAssets
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
 
+		public LayerMask attackMask;
+		public CinemachineVirtualCamera _Cinemachine;
+
 		private const float _threshold = 0.01f;
 
 		private bool _hasAnimator;
@@ -123,6 +127,7 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			Attack();
 		}
 
 		private void LateUpdate()
@@ -331,6 +336,19 @@ namespace StarterAssets
 		void ChangeCharacterControllerCollider(float f)
 		{
 			_controller.radius = f;
+		}
+		void Attack()
+		{
+			if (_input.attack)
+			{
+				_Cinemachine.gameObject.SetActive(true);
+			}
+
+			Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			if (Physics.Raycast(_ray, out RaycastHit hit, 1000f, attackMask))
+			{
+				Debug.Log(hit.collider);
+			}
 		}
 	}
 }
