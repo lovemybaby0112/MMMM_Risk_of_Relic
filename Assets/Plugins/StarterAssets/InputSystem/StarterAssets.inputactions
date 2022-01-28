@@ -40,8 +40,13 @@
                 {
                     "name": "Attack",
                     "type": "PassThrough",
+<<<<<<< Updated upstream
                     "id": "495a4cb1-12a3-43c2-879f-78662fb8028b",
                     "expectedControlType": "",
+=======
+                    "id": "48f025d0-c4e1-43a8-b4e6-b9dd037980e3",
+                    "expectedControlType": "Button",
+>>>>>>> Stashed changes
                     "processors": "",
                     "interactions": ""
                 }
@@ -225,9 +230,15 @@
                 },
                 {
                     "name": "",
+<<<<<<< Updated upstream
                     "id": "5b2e6eef-d45b-40d7-b816-066b7fca3660",
                     "path": "<Mouse>/leftButton",
                     "interactions": "Hold",
+=======
+                    "id": "583d7ef0-7503-4ac2-9335-bfcba3ccd0bb",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+>>>>>>> Stashed changes
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Attack",

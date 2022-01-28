@@ -48,6 +48,7 @@ namespace StarterAssets
 		public float GroundedRadius = 0.56f;
 		[Tooltip("What layers the character uses as ground")]
 		public LayerMask GroundLayers;
+		public LayerMask attackMask;
 
 		[Header("Cinemachine")]
 		[Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
@@ -94,6 +95,9 @@ namespace StarterAssets
 
 		public Transform debugBall;
 
+		[SerializeField] private CinemachineVirtualCamera _Cinemachine;
+		public GameObject debugBall;
+
 		private const float _threshold = 0.01f;
 
 		private bool _hasAnimator;
@@ -116,6 +120,7 @@ namespace StarterAssets
 			_hasAnimator = TryGetComponent(out _animator);
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
+			debugBall = GameObject.Find("Sphere");
 
 			AssignAnimationIDs();
 
@@ -343,6 +348,7 @@ namespace StarterAssets
 		}
 
 		void Attack()
+<<<<<<< Updated upstream
         {
             if (_input.attack)
             {
@@ -358,5 +364,23 @@ namespace StarterAssets
 			Debug.Log(screenCenterPoint);
 			Debug.DrawLine(Input.mousePosition, hit.point, Color.red, 0.1f);
         }
+=======
+		{
+			if (_input.attack)
+			{
+				_Cinemachine.gameObject.SetActive(true);
+
+				Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				if (Physics.Raycast(_ray, out RaycastHit hit, 1000f, attackMask))
+				{
+					//debugBall.transform.position = hit.point;
+				}
+				Debug.Log(hit.collider);
+			}
+
+			Vector3 screenCenterPoint = new Vector3(Screen.height * 2, Screen.width * 2, 0);
+			
+		}
+>>>>>>> Stashed changes
 	}
 }

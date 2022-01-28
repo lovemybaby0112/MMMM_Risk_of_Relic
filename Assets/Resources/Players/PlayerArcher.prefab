@@ -1979,11 +1979,16 @@ MonoBehaviour:
   GroundLayers:
     serializedVersion: 2
     m_Bits: 896
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   CinemachineCameraTarget: {fileID: 3493842147387249754}
   TopClamp: 70
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
+  _Cinemachine: {fileID: 6880357498645069608}
+  debugBall: {fileID: 0}
 --- !u!114 &437706174915784413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2000,6 +2005,7 @@ MonoBehaviour:
   look: {x: 0, y: 0}
   jump: 0
   sprint: 0
+  attack: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
