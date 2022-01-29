@@ -103,6 +103,7 @@ public class MobManager : MonoBehaviour
             {
                 mobsList[i].gameObject.SetActive(false);
                 mobsList[i].onUsing = false;
+                Debug.Log(mobsList[i].onUsing);
                 break;
             }
         }
@@ -117,12 +118,14 @@ public class MobManager : MonoBehaviour
         Ray ray; //判斷怪物有沒有在正確位置的射線
         RaycastHit hitInfo; //擊中的資訊
         int num = Random.Range(0, 10);
+        Debug.Log(num);
         if (num < 6)
         {
             mob = GetMob();
             if (mob == null) return false;
             else
             {
+
                 for (int i = 0; i < mob.Count; i++)
                 {                  
                     ray = new Ray(mob[i].gameObject.transform.position, Vector3.down);
@@ -132,6 +135,7 @@ public class MobManager : MonoBehaviour
                         var mobP = mob[i].gameObject.transform.localPosition;
                         mobP.y = hitInfo.point.y;
                         mob[i].gameObject.transform.localPosition = mobP;
+                        //Debug.Log("SetActive");
                         mob[i].gameObject.SetActive(true);
                         //Debug.Log(mob[i].onUsing);
                     }
@@ -149,9 +153,10 @@ public class MobManager : MonoBehaviour
     /// <param name="spawn"></param>
     public void DoSpawn(bool spawn)
     {
+        Debug.Log("近來");
         if (spawn)
         {
-            if(Spawn())
+            if (Spawn())
             {
                 InvokeRepeating("Spawn", 1.0f, 3.0f);
             }

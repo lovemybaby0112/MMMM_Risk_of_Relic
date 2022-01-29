@@ -44,6 +44,10 @@ public class MobHp : MonoBehaviour
 
     void Update()
     {
+        if(gameObject.active ==true)
+        {
+            hpUI.SetActive(true);
+        }
         PHFollowEnemy();
         GetHurt();
     }
@@ -84,12 +88,15 @@ public class MobHp : MonoBehaviour
         //當怪物血量為0時死亡，重製
         if(healthPercent <= 0)
         {
-            healthPercent = 0;
-            Destroy(hpUI);
-            MobManager.Instance().ResetMob(this.gameObject);
+            ResetHpAndMob();
         }
     }
 
+    private void ResetHpAndMob()
+    {
+        hpUI.SetActive(false);
+        MobManager.Instance().ResetMob(this.gameObject);
+    }
     //private void OnTriggerEnter(Collider other)
     //{
     //    if(other.gameObject.tag =="attack")

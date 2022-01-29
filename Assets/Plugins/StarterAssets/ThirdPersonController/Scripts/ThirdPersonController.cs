@@ -104,7 +104,7 @@ namespace StarterAssets
 
 		private void Start()
 		{
-			Debug.Log(_resetCamera);
+			//Debug.Log(_resetCamera);
 			_hasAnimator = TryGetComponent(out _animator);
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
