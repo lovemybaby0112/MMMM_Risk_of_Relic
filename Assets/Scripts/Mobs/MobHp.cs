@@ -82,20 +82,29 @@ public class MobHp : MonoBehaviour
         if (hurt.sizeDelta.x > hpBar.sizeDelta.x)
         {
             //讓傷害量(紅色血條)逐漸追上當前血量
-            hurt.sizeDelta += new Vector2(-1, 0) * Time.deltaTime * 5;
+            hurt.sizeDelta += new Vector2(-1, 0) * Time.deltaTime * 8;
         }
 
         //當怪物血量為0時死亡，重製
-        if(healthPercent <= 0)
+        if(currentHealth <= 0)
         {
-            ResetHpAndMob();
+            StartCoroutine(ResetHpAndMob());
         }
     }
 
-    private void ResetHpAndMob()
+    /// <summary>
+    /// 重設血量與怪物狀態
+    /// </summary>
+    IEnumerator ResetHpAndMob()
     {
-        hpUI.SetActive(false);
+        yield return new WaitForSeconds(2.0f);
+        //回去重設怪物狀態
         MobManager.Instance().ResetMob(this.gameObject);
+        hpUI.SetActive(false); //隱藏血條
+        currentHealth = maxHealth; //血量恢復最大血量
+        //UI回到正常長度
+        hpBar.sizeDelta = new Vector2(hpBarRectWidth, hpBar.sizeDelta.y);
+        hurt.sizeDelta = new Vector2(hpBarRectWidth, hpBar.sizeDelta.y);
     }
     //private void OnTriggerEnter(Collider other)
     //{

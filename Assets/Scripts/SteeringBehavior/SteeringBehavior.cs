@@ -39,16 +39,15 @@ public class SteeringBehavior
 
         if (distance <= data.mobMeleeAttackRange + 0.001f)
         {
+            data.my.transform.LookAt(target);
             data.doMove = false;
             return (int)DoAI.MeleeAttack;
         }
         else if (distance <=  data.mobSpellAttackRange + 0.001f) //0.001f是偏差值，有其他怪物之後記得改成distance <= AIData.mobAttackDistance + 0.001f
         {
+            data.my.transform.LookAt(target);
             data.doMove = false;
             return (int)DoAI.SpellAttack;
-            // Vector3 finalPosition = data.my.transform.position;
-            //return false; //停止Seek?開始在外面做AI?
-            //action();//在裡面做AI??
         }
 
         Vector3 myForward = data.my.transform.forward;
