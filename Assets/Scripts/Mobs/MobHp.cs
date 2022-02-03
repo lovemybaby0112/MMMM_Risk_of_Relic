@@ -10,13 +10,14 @@ public class MobHp : MonoBehaviour
     string mobName;
     Mobs mobData;
     private float maxHealth; //最大血量
-    private float currentHealth; //當前血量
+    public float currentHealth; //當前血量
     private float hpBarRectWidth; //血條UI的長度
     private RectTransform hpUIRect;
     private RectTransform hpBar, hurt;
-    MobAI mobAI;
+
     private void Awake()
     {
+
         mobName = this.gameObject.name;
         switch (mobName)
         {       

@@ -40,13 +40,13 @@ public class SteeringBehavior
         if (distance <= data.mobMeleeAttackRange + 0.001f)
         {
             data.my.transform.LookAt(target);
-            data.doMove = false;
+            //data.doMove = false;
             return (int)DoAI.MeleeAttack;
         }
         else if (distance <=  data.mobSpellAttackRange + 0.001f) //0.001f是偏差值，有其他怪物之後記得改成distance <= AIData.mobAttackDistance + 0.001f
         {
             data.my.transform.LookAt(target);
-            data.doMove = false;
+            //data.doMove = false;
             return (int)DoAI.SpellAttack;
         }
 
@@ -78,8 +78,9 @@ public class SteeringBehavior
             if (distance < 3.0f) vecDotRight *= (distance / 3.0f + 1.0f); //越接近終點時轉向力越大，使其在剩下距離能順利到達目標
             data.turnForce = vecDotRight;
         }
-        data.doMove = true;
+        //data.doMove = true;
         return (int)DoAI.Move;
+       
         //return true;
         //應該不用?這段是靠近時減速?
         //if (distance < 3.0f)
@@ -96,92 +97,92 @@ public class SteeringBehavior
         Move = 2,
     }
 
-    static public bool CollisiionAvoid(AIData data)
-    {
-        List<Obstacle> avoidTargets = GameManager.gameManagerIns.GetObstacles(); //接住所有障礙物
-        Transform myTrans = data.my.transform;
-        Vector3 myPos = myTrans.position;
-        Vector3 myForward = myTrans.forward;
-        data.myCurrentVector = myForward;
-        Vector3 vec;
-        float fFinalDotDist;
-        float fFinalProjDist;
-        Vector3 vFinalVec = Vector3.forward;
-        Obstacle oFinal = null;
-        float fDist = 0.0f;
-        float fDot = 0.0f;
-        float fFinalDot = 0.0f;
-        int iCount = avoidTargets.Count;
-        //Debug.Log(avoidTargets[0]);
+    //static public bool CollisiionAvoid(AIData data)
+    //{
+    //    List<Obstacle> avoidTargets = GameManager.gameManagerIns.GetObstacles(); //接住所有障礙物
+    //    Transform myTrans = data.my.transform;
+    //    Vector3 myPos = myTrans.position;
+    //    Vector3 myForward = myTrans.forward;
+    //    data.myCurrentVector = myForward;
+    //    Vector3 vec;
+    //    float fFinalDotDist;
+    //    float fFinalProjDist;
+    //    Vector3 vFinalVec = Vector3.forward;
+    //    Obstacle oFinal = null;
+    //    float fDist = 0.0f;
+    //    float fDot = 0.0f;
+    //    float fFinalDot = 0.0f;
+    //    int iCount = avoidTargets.Count;
+    //    //Debug.Log(avoidTargets[0]);
 
-        float fMinDist = 10000.0f;
-        for (int i = 0; i < iCount; i++)
-        {
-            vec = avoidTargets[i].transform.position - myPos;
+    //    float fMinDist = 10000.0f;
+    //    for (int i = 0; i < iCount; i++)
+    //    {
+    //        vec = avoidTargets[i].transform.position - myPos;
 
-            vec.y = 0.0f;
-            fDist = vec.magnitude;
-            if (fDist > data.myProbeLength + avoidTargets[i].myRadius)
-            {
-                avoidTargets[i].m_eState = Obstacle.eState.OUTSIDE_TEST;
-                continue;
-            }
+    //        vec.y = 0.0f;
+    //        fDist = vec.magnitude;
+    //        if (fDist > data.myProbeLength + avoidTargets[i].myRadius)
+    //        {
+    //            avoidTargets[i].m_eState = Obstacle.eState.OUTSIDE_TEST;
+    //            continue;
+    //        }
 
-            vec.Normalize();
-            fDot = Vector3.Dot(vec, myForward);
-            if (fDot < 0)
-            {
-                avoidTargets[i].m_eState = Obstacle.eState.OUTSIDE_TEST;
-                continue;
-            }
-            else if (fDot > 1.0f)
-            {
-                fDot = 1.0f;
-            }
-            avoidTargets[i].m_eState = Obstacle.eState.INSIDE_TEST;
-            float fProjDist = fDist * fDot;
-            float fDotDist = Mathf.Sqrt(fDist * fDist - fProjDist * fProjDist);
-            if (fDotDist > avoidTargets[i].myRadius + data.myRadius)
-            {
-                continue;
-            }
+    //        vec.Normalize();
+    //        fDot = Vector3.Dot(vec, myForward);
+    //        if (fDot < 0)
+    //        {
+    //            avoidTargets[i].m_eState = Obstacle.eState.OUTSIDE_TEST;
+    //            continue;
+    //        }
+    //        else if (fDot > 1.0f)
+    //        {
+    //            fDot = 1.0f;
+    //        }
+    //        avoidTargets[i].m_eState = Obstacle.eState.INSIDE_TEST;
+    //        float fProjDist = fDist * fDot;
+    //        float fDotDist = Mathf.Sqrt(fDist * fDist - fProjDist * fProjDist);
+    //        if (fDotDist > avoidTargets[i].myRadius + data.myRadius)
+    //        {
+    //            continue;
+    //        }
 
-            if (fDist < fMinDist)
-            {
-                fMinDist = fDist;
-                fFinalDotDist = fDotDist;
-                fFinalProjDist = fProjDist;
-                vFinalVec = vec;
-                oFinal = avoidTargets[i];
-                fFinalDot = fDot;
-            }
+    //        if (fDist < fMinDist)
+    //        {
+    //            fMinDist = fDist;
+    //            fFinalDotDist = fDotDist;
+    //            fFinalProjDist = fProjDist;
+    //            vFinalVec = vec;
+    //            oFinal = avoidTargets[i];
+    //            fFinalDot = fDot;
+    //        }
 
-        }
+    //    }
 
-        if (oFinal != null)
-        {
-            Vector3 vCross = Vector3.Cross(myForward, vFinalVec);
-            float fTurnMag = Mathf.Sqrt(1.0f - fFinalDot * fFinalDot);
-            if (vCross.y > 0.0f)
-            {
-                fTurnMag = -fTurnMag;
-            }
-            data.turnForce = fTurnMag;
+    //    if (oFinal != null)
+    //    {
+    //        Vector3 vCross = Vector3.Cross(myForward, vFinalVec);
+    //        float fTurnMag = Mathf.Sqrt(1.0f - fFinalDot * fFinalDot);
+    //        if (vCross.y > 0.0f)
+    //        {
+    //            fTurnMag = -fTurnMag;
+    //        }
+    //        data.turnForce = fTurnMag;
 
-            float fTotalLen = data.myProbeLength + oFinal.myRadius;
-            float fRatio = fMinDist / fTotalLen;
-            if (fRatio > 1.0f)
-            {
-                fRatio = 1.0f;
-            }
-            fRatio = 1.0f - fRatio;
-            data.moveForce = -fRatio;
-            oFinal.m_eState = Obstacle.eState.COL_TEST;
-            data.doCol = true;
-            data.doMove = true;
-            return true;
-        }
-        data.doCol = false;
-        return false;
-    }
+    //        float fTotalLen = data.myProbeLength + oFinal.myRadius;
+    //        float fRatio = fMinDist / fTotalLen;
+    //        if (fRatio > 1.0f)
+    //        {
+    //            fRatio = 1.0f;
+    //        }
+    //        fRatio = 1.0f - fRatio;
+    //        data.moveForce = -fRatio;
+    //        oFinal.m_eState = Obstacle.eState.COL_TEST;
+    //        data.doCol = true;
+    //        data.doMove = true;
+    //        return true;
+    //    }
+    //    data.doCol = false;
+    //    return false;
+    //}
 }

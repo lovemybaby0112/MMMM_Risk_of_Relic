@@ -9,7 +9,7 @@ abstract public class Mobs
     [HideInInspector]
     public bool onUsing ; //是否在場上
     public int maxHp; //總血量
-    protected int hp; //當前血量
+    public int hp; //當前血量
     protected int dmg; //傷害
     protected float speed; //走路速度
     protected float mobMeleeAttackRange; //進戰攻擊距離
