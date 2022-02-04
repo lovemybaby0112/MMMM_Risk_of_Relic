@@ -21,13 +21,14 @@ public class MobAI : MonoBehaviour
     }
     void Start()
     {
+    }
+    private void OnEnable()
+    {
+        state = 1;
         b_DoAI = true;
         isDead = false;
         this.transform.LookAt(player[0].transform.position);
-        state = 1;
-
     }
-
     void Update()
     {
 
@@ -39,16 +40,17 @@ public class MobAI : MonoBehaviour
 
     void FSM()
     {
-        Debug.Log("狀態"+ state);   
+        Debug.Log("狀態"+ state);
+        float info = animator.GetCurrentAnimatorStateInfo(0).normalizedTime; //判斷動畫結束時間
         if (state == (int)MobState.BORN)
         { 
             animator.Play("Spawn");
-            float info = animator.GetCurrentAnimatorStateInfo(0).normalizedTime; //判斷動畫結束時間
-            if (info >= 0.74f) state = (int)MobState.DOAI;
+            state = (int)MobState.DOAI;
         }
         else if (state == (int)MobState.DOAI && b_DoAI == true)
         {
             doAI = SteeringBehavior.Seek(data);
+            Debug.Log(data.doMove);
             switch (doAI)
             {
                 case 0:
@@ -62,13 +64,9 @@ public class MobAI : MonoBehaviour
                     animator.SetTrigger("Breath Attack");
                     break;
                 case 2:
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Run Forward In Place"))
-                    {
-                        data.doMove = true;
-                    }
+                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Run Forward In Place")) data.doMove = true;
                     else data.doMove = false;
                     SteeringBehavior.Move(data);
-                    //data.doMove = true;
                     animator.SetBool("Run Forward", true);
                     break;
             }
@@ -82,7 +80,6 @@ public class MobAI : MonoBehaviour
             animator.SetTrigger("Die");
             isDead = true;
             b_DoAI = false;
-            state = 4;
         }
     }
 
@@ -92,8 +89,10 @@ public class MobAI : MonoBehaviour
         if(hp <= 0)
         {
             state = (int)MobState.DIE;
+            
         }
     }
+
 }
 
 public enum MobState

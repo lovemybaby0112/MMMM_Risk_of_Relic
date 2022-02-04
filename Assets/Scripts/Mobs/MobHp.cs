@@ -43,9 +43,10 @@ public class MobHp : MonoBehaviour
         hpBarRectWidth = hpBar.rect.width; //得到血條本身的寬度
     }
 
+
     void Update()
     {
-        if(gameObject.active ==true)
+        if(gameObject.activeSelf ==true)
         {
             hpUI.SetActive(true);
         }
@@ -96,7 +97,7 @@ public class MobHp : MonoBehaviour
     /// <summary>
     /// 重設血量與怪物狀態
     /// </summary>
-    IEnumerator ResetHpAndMob()
+    public IEnumerator ResetHpAndMob()
     {
         yield return new WaitForSeconds(2.0f);
         //回去重設怪物狀態

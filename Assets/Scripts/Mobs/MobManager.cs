@@ -122,7 +122,7 @@ public class MobManager : MonoBehaviour
         Ray ray; //判斷怪物有沒有在正確位置的射線
         RaycastHit hitInfo; //擊中的資訊
         int num = Random.Range(0, 10);
-        Debug.Log(num);
+        //Debug.Log(num);
         if (num < 6)
         {
             mob = GetMob();
@@ -144,11 +144,6 @@ public class MobManager : MonoBehaviour
                     mob.onUsing = false;
                     return false;
                 }
-                //for (int i = 0; i < mob.Count; i++)
-                //{
-
-                //}
-                //return true;
             }
         }
         else return false;
@@ -160,12 +155,13 @@ public class MobManager : MonoBehaviour
     /// <param name="spawn"></param>
     public void DoSpawn(bool spawn)
     {
+
         if (spawn)
         {
-            if (Spawn()) Spawn();
-                //InvokeRepeating("Spawn", 1.0f, 1.0f);
+            Debug.Log("spawn");
+            InvokeRepeating("Spawn", 1.0f, 1.0f);
         }
-        //else CancelInvoke("Spawn"); //停止InvokeRepeating的方法
+        else CancelInvoke("Spawn"); //停止InvokeRepeating的方法
     }
 
     #endregion
