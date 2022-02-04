@@ -158,7 +158,6 @@ public class MobManager : MonoBehaviour
 
         if (spawn)
         {
-            Debug.Log("spawn");
             InvokeRepeating("Spawn", 1.0f, 1.0f);
         }
         else CancelInvoke("Spawn"); //°±¤îInvokeRepeatingªº¤èªk
