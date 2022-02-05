@@ -24,7 +24,7 @@ public class C_Info : MonoBehaviour
 
     public void Loading()
     {     
-        //SceneManager.LoadSceneAsync("Main"); //切到遊戲畫面
+        SceneManager.LoadSceneAsync("GameScene"); //切到遊戲畫面
         LoadingMask.SetActive(true);
     }
 }
