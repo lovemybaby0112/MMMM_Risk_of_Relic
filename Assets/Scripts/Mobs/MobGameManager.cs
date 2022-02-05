@@ -7,6 +7,7 @@ public class MobGameManager : MonoBehaviour
     public static GameManager gameManagerIns;
     private List<Obstacle> obstacles;
 
+
     private void Awake()
     {
         //gameManagerIns = this;

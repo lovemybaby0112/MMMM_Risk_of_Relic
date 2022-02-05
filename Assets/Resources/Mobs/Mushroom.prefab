@@ -1193,8 +1193,8 @@ MonoBehaviour:
     doMove: 0
     doCol: 0
     myCurrentVector: {x: 0, y: 0, z: 0}
-    mobMeleeAttackRange: 1
-    mobSpellAttackRange: 6
+    mobMeleeAttackRange: 3
+    mobSpellAttackRange: 10
     mobSpeed: 10
     myProbeLength: 0
     myRadius: 0

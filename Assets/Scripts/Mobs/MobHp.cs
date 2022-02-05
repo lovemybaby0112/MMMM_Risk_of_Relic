@@ -10,12 +10,14 @@ public class MobHp : MonoBehaviour
     string mobName;
     Mobs mobData;
     private float maxHealth; //最大血量
-    private float currentHealth; //當前血量
+    public float currentHealth; //當前血量
     private float hpBarRectWidth; //血條UI的長度
     private RectTransform hpUIRect;
     private RectTransform hpBar, hurt;
+
     private void Awake()
     {
+
         mobName = this.gameObject.name;
         switch (mobName)
         {       
@@ -41,9 +43,15 @@ public class MobHp : MonoBehaviour
         hpBarRectWidth = hpBar.rect.width; //得到血條本身的寬度
     }
 
+
     void Update()
     {
+        if(gameObject.activeSelf ==true)
+        {
+            hpUI.SetActive(true);
+        }
         PHFollowEnemy();
+        GetHurt();
     }
     void PHFollowEnemy()
     {
@@ -59,9 +67,14 @@ public class MobHp : MonoBehaviour
 
     void GetHurt()
     {
+        //接受傷害
         currentHealth -= 10;
+
         ////按下H鈕扣血
-        //if (Input.GetKeyDown(KeyCode.H))接受傷害
+        //if (Input.GetKeyDown(KeyCode.H))
+        //{
+        //    
+        //}
 
         float healthPercent = currentHealth / maxHealth * hpBarRectWidth;
 
@@ -72,19 +85,33 @@ public class MobHp : MonoBehaviour
         if (hurt.sizeDelta.x > hpBar.sizeDelta.x)
         {
             //讓傷害量(紅色血條)逐漸追上當前血量
-            hurt.sizeDelta += new Vector2(-1, 0) * Time.deltaTime * 5;
+            hurt.sizeDelta += new Vector2(-1, 0) * Time.deltaTime * 8;
         }
 
         //當怪物血量為0時死亡，重製
-        if(healthPercent <= 0)
+        if(currentHealth <= 0)
         {
-            healthPercent = 0;
+            hpUI.SetActive(false); //隱藏血條
+            StartCoroutine(ResetHpAndMob());
         }
     }
 
+    /// <summary>
+    /// 重設血量與怪物狀態
+    /// </summary>
+    public IEnumerator ResetHpAndMob()
+    {
+        yield return new WaitForSeconds(5.0f);
+        //回去重設怪物狀態
+        MobManager.Instance().ResetMob(this.gameObject);
+        currentHealth = maxHealth; //血量恢復最大血量
+        //UI回到正常長度
+        hpBar.sizeDelta = new Vector2(hpBarRectWidth, hpBar.sizeDelta.y);
+        hurt.sizeDelta = new Vector2(hpBarRectWidth, hpBar.sizeDelta.y);
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag =="attack")
+        if (other.gameObject.tag == "attack")
         {
             GetHurt();
         }

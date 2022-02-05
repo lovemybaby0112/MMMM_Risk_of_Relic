@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class MobAI : MonoBehaviour
 {
-    float state;
+    int state;
     public AIData data;
     GameObject[] player;
-    int doAI; //要做甚麼AI
+    public int doAI; //要做甚麼AI
     Animator animator;
-
-    bool startSeek = false;
+    float hp;
+    bool isDead;
+    bool b_DoAI;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -19,44 +20,79 @@ public class MobAI : MonoBehaviour
     }
     void Start()
     {
-        this.transform.LookAt(player[0].transform.position);
-        state = 1;
     }
-
+    private void OnEnable()
+    {
+        state = 1;
+        b_DoAI = true;
+        isDead = false;
+        this.transform.LookAt(player[0].transform.position);
+    }
     void Update()
     {
+
         data.targetPosition = player[0].transform.position;
         data.my = this.gameObject;
-        //FSM();
+        FSM();
+        ChangeDeadState();
     }
 
     void FSM()
     {
         float info = animator.GetCurrentAnimatorStateInfo(0).normalizedTime; //判斷動畫結束時間
-        if (info >= 0.74f) state = 2;
-        if(state == 1) animator.Play("Spawn");
-        if (state == 2)
-        {           
-            if (SteeringBehavior.CollisiionAvoid(data) == false)
-            {
-                doAI = SteeringBehavior.Seek(data);
-            }
+        if (state == (int)MobState.BORN)
+        {
+            animator.Play("Spawn");
+            state = (int)MobState.DOAI;
+        }
+        else if (state == (int)MobState.DOAI && b_DoAI == true)
+        {
+            doAI = SteeringBehavior.Seek(data);
+            Debug.Log(data.doMove);
             switch (doAI)
             {
                 case 0:
-                    animator.SetBool("Walk Forward", false);
+                    data.doMove = false;
+                    animator.SetBool("Run Forward", false);
                     animator.SetTrigger("Punch Attack");
                     break;
                 case 1:
-                    animator.SetBool("Walk Forward", false);
+                    data.doMove = false;
+                    animator.SetBool("Run Forward", false);
                     animator.SetTrigger("Breath Attack");
                     break;
                 case 2:
+                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Run Forward In Place")) data.doMove = true;
+                    else data.doMove = false;
                     SteeringBehavior.Move(data);
-                    animator.SetBool("Walk Forward", true);
+                    animator.SetBool("Run Forward", true);
                     break;
             }
+            //if (SteeringBehavior.CollisiionAvoid(data) == false)
+            //{
+
+            //}
+        }
+        else if (state == (int)MobState.DIE && isDead == false)
+        {
+            animator.SetTrigger("Die");
+            isDead = true;
+            b_DoAI = false;
         }
     }
 
+    void ChangeDeadState()
+    {
+        hp = GetComponent<MobHp>().currentHealth;
+        if(hp <= 0) state = (int)MobState.DIE;
+    }
+
 }
+
+public enum MobState
+{
+    BORN =1,
+    DOAI =2,
+    DIE =3,
+}
+
