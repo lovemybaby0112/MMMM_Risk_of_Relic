@@ -16,8 +16,7 @@ public class MobHp : MonoBehaviour
     private RectTransform hpBar, hurt;
 
     private void Awake()
-    {
-
+    { 
         mobName = this.gameObject.name;
         switch (mobName)
         {       
@@ -46,7 +45,7 @@ public class MobHp : MonoBehaviour
 
     void Update()
     {
-        if(gameObject.activeSelf ==true)
+        if (gameObject.activeSelf == true)
         {
             hpUI.SetActive(true);
         }
@@ -67,14 +66,12 @@ public class MobHp : MonoBehaviour
 
     void GetHurt()
     {
-        //±µ¨ü¶Ë®`
-        currentHealth -= 10;
-
-        ////«ö¤UH¶s¦©¦å
-        //if (Input.GetKeyDown(KeyCode.H))
-        //{
-        //    
-        //}
+        //«ö¤UH¶s¦©¦å
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            //±µ¨ü¶Ë®`
+            currentHealth -= 10;
+        }
 
         float healthPercent = currentHealth / maxHealth * hpBarRectWidth;
 
@@ -109,12 +106,12 @@ public class MobHp : MonoBehaviour
         hpBar.sizeDelta = new Vector2(hpBarRectWidth, hpBar.sizeDelta.y);
         hurt.sizeDelta = new Vector2(hpBarRectWidth, hpBar.sizeDelta.y);
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "attack")
-        {
-            GetHurt();
-        }
-        Destroy(other);
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag == "attack")
+    //    {
+    //        GetHurt();
+    //    }
+    //    Destroy(other);
+    //}
 }
