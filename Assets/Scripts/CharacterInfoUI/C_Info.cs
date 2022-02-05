@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class C_Info : MonoBehaviour
 {
-    public GameObject LoadingMask;
+    public GameObject loadingMask;
+    public GameObject uiMask;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +24,10 @@ public class C_Info : MonoBehaviour
     }
 
     public void Loading()
-    {     
+    {
+        loadingMask.SetActive(true);
+        uiMask.SetActive(false);
         SceneManager.LoadSceneAsync("GameScene"); //切到遊戲畫面
-        LoadingMask.SetActive(true);
+
     }
 }
