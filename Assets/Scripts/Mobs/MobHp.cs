@@ -51,7 +51,6 @@ public class MobHp : MonoBehaviour
             hpUI.SetActive(true);
         }
         PHFollowEnemy();
-        GetHurt();
     }
     void PHFollowEnemy()
     {
