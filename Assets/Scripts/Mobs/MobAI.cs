@@ -15,7 +15,6 @@ public class MobAI : MonoBehaviour
     bool b_DoAI;
     private void Awake()
     {
-
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectsWithTag("Player");
     }
@@ -40,10 +39,9 @@ public class MobAI : MonoBehaviour
 
     void FSM()
     {
-        Debug.Log("狀態"+ state);
         float info = animator.GetCurrentAnimatorStateInfo(0).normalizedTime; //判斷動畫結束時間
         if (state == (int)MobState.BORN)
-        { 
+        {
             animator.Play("Spawn");
             state = (int)MobState.DOAI;
         }
@@ -86,11 +84,7 @@ public class MobAI : MonoBehaviour
     void ChangeDeadState()
     {
         hp = GetComponent<MobHp>().currentHealth;
-        if(hp <= 0)
-        {
-            state = (int)MobState.DIE;
-            
-        }
+        if(hp <= 0) state = (int)MobState.DIE;
     }
 
 }

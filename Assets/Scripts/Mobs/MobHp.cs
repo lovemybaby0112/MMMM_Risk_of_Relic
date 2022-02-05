@@ -67,13 +67,14 @@ public class MobHp : MonoBehaviour
 
     void GetHurt()
     {
+        //接受傷害
+        currentHealth -= 10;
 
         ////按下H鈕扣血
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            //接受傷害
-            currentHealth -= 10;
-        }
+        //if (Input.GetKeyDown(KeyCode.H))
+        //{
+        //    
+        //}
 
         float healthPercent = currentHealth / maxHealth * hpBarRectWidth;
 
@@ -90,6 +91,7 @@ public class MobHp : MonoBehaviour
         //當怪物血量為0時死亡，重製
         if(currentHealth <= 0)
         {
+            hpUI.SetActive(false); //隱藏血條
             StartCoroutine(ResetHpAndMob());
         }
     }
@@ -99,21 +101,20 @@ public class MobHp : MonoBehaviour
     /// </summary>
     public IEnumerator ResetHpAndMob()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(5.0f);
         //回去重設怪物狀態
         MobManager.Instance().ResetMob(this.gameObject);
-        hpUI.SetActive(false); //隱藏血條
         currentHealth = maxHealth; //血量恢復最大血量
         //UI回到正常長度
         hpBar.sizeDelta = new Vector2(hpBarRectWidth, hpBar.sizeDelta.y);
         hurt.sizeDelta = new Vector2(hpBarRectWidth, hpBar.sizeDelta.y);
     }
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if(other.gameObject.tag =="attack")
-    //    {
-    //        GetHurt();
-    //    }
-    //    Destroy(other);
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "attack")
+        {
+            GetHurt();
+        }
+        Destroy(other);
+    }
 }
