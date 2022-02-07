@@ -561,8 +561,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: MMMM_Risk_of_Relic
-  metroPackageVersion: 
+  metroPackageName: MMMMRiskofRelic
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -570,7 +570,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: MMMM_Risk_of_Relic
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: MMMM_Risk_of_Relic
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
