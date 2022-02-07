@@ -305,6 +305,5 @@ public class MobManager : MonoBehaviour
         if (spawn) InvokeRepeating("Spawn", 1.0f, 3.0f);
         else CancelInvoke("Spawn"); //°±¤îInvokeRepeatingªº¤èªk
     }
-
     #endregion
 }
