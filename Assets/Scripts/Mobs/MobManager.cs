@@ -12,6 +12,8 @@ public class MobManager : MonoBehaviour
 
     List<Mobs> mushroomList;
     List<Mobs> frightflyList;
+    List<Mobs> fire_PeaShooterList;
+    List<Mobs> ice_PeaShooterList;
     int count; //怪物陣列總長度
 
     //怪物生成位置座標的大小數值
@@ -28,6 +30,8 @@ public class MobManager : MonoBehaviour
         MobManager_Ins = this;
         mushroomList = new List<Mobs>();
         frightflyList = new List<Mobs>();
+        fire_PeaShooterList = new List<Mobs>();
+        ice_PeaShooterList = new List<Mobs>();
     }
 
     /// <summary>
@@ -56,6 +60,18 @@ public class MobManager : MonoBehaviour
                 frightfly.gameObject = mobGameObject;
                 frightfly.onUsing = false;
                 frightflyList.Add(frightfly);
+                break;
+            case "FIRE_PeaShooter":
+                Mobs fire_PeaShooter = new FIRE_PeaShooter();
+                fire_PeaShooter.gameObject = mobGameObject;
+                fire_PeaShooter.onUsing = false;
+                fire_PeaShooterList.Add(fire_PeaShooter);
+                break;
+            case "ICE_PeaShooter":
+                Mobs ice_PeaShooter = new ICE_PeaShooter();
+                ice_PeaShooter.gameObject = mobGameObject;
+                ice_PeaShooter.onUsing = false;
+                ice_PeaShooterList.Add(ice_PeaShooter);
                 break;
         }
     }
@@ -91,6 +107,32 @@ public class MobManager : MonoBehaviour
                         frightflyList[i].onUsing = true;
                         frightflyList[i].gameObject.transform.position = new Vector3(Random.Range(minX, maxX), 999.0f, Random.Range(minZ, maxZ));
                         mob = frightflyList[i];
+                        break;
+                    }
+                }
+                break;
+            case "FIRE_PeaShooter":
+                count = fire_PeaShooterList.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    if (fire_PeaShooterList[i].onUsing == false)
+                    {
+                        fire_PeaShooterList[i].onUsing = true;
+                        fire_PeaShooterList[i].gameObject.transform.position = new Vector3(Random.Range(minX, maxX), 999.0f, Random.Range(minZ, maxZ));
+                        mob = fire_PeaShooterList[i];
+                        break;
+                    }
+                }
+                break;
+            case "ICE_PeaShooter":
+                count = ice_PeaShooterList.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    if (ice_PeaShooterList[i].onUsing == false)
+                    {
+                        ice_PeaShooterList[i].onUsing = true;
+                        ice_PeaShooterList[i].gameObject.transform.position = new Vector3(Random.Range(minX, maxX), 999.0f, Random.Range(minZ, maxZ));
+                        mob = ice_PeaShooterList[i];
                         break;
                     }
                 }
@@ -131,22 +173,33 @@ public class MobManager : MonoBehaviour
                     }
                 }
                 break;
+            case "FIRE_PeaShooter(Clone)":
+                iCount = frightflyList.Count;
+                for (int i = 0; i < iCount; i++)
+                {
+                    if (frightflyList[i].gameObject == mob)
+                    {
+                        frightflyList[i].gameObject.SetActive(false);
+                        frightflyList[i].onUsing = false;
+                        break;
+                    }
+                }
+                break;
+            case "ICE_PeaShooter(Clone)":
+                iCount = frightflyList.Count;
+                for (int i = 0; i < iCount; i++)
+                {
+                    if (frightflyList[i].gameObject == mob)
+                    {
+                        frightflyList[i].gameObject.SetActive(false);
+                        frightflyList[i].onUsing = false;
+                        break;
+                    }
+                }
+                break;
         }
-
-
     }
 
-    //List<Mobs> ReturnRightList(string name)
-    //{
-    //    switch (name)
-    //    {
-    //        case "Mushroom":
-    //            return mushroomList;
-    //        case "Frightfly":
-    //            return frightflyList;
-    //    }
-    //    return null;
-    //}
     #region 怪物出生
     /// <summary>
     /// 產卵(同時判定有沒有再有地板的地方出生)
@@ -156,8 +209,10 @@ public class MobManager : MonoBehaviour
         Mobs mob;
         Ray ray; //判斷怪物有沒有在正確位置的射線
         RaycastHit hitInfo; //擊中的資訊
+
+        //下面是機率生怪，把怪物物件啟動
         int MushroomNum = Random.Range(0, 10);
-        if (MushroomNum < 6)
+        if (MushroomNum <= 6)
         {
             mob = GetMob("Mushroom");
             if (mob == null) return false;
@@ -171,17 +226,51 @@ public class MobManager : MonoBehaviour
                     mobP.y = hitInfo.point.y;
                     mob.gameObject.transform.localPosition = mobP;
                     mob.gameObject.SetActive(true);
-                    //return true;
                 }
-                else
-                { 
-                    mob.onUsing = false;
-                    //return false;
-                }
+                else mob.onUsing = false;
             }
         }
-        int FrightflyNum = Random.Range(0, 5);
-        if (FrightflyNum < 5)
+
+        int fire_PeaShooter = Random.Range(0, 10);
+        if (fire_PeaShooter <= 6)
+        {
+            mob = GetMob("FIRE_PeaShooter");
+            if (mob == null) return false;
+            else
+            {
+                ray = new Ray(mob.gameObject.transform.position, Vector3.down);
+                if (Physics.Raycast(ray, out hitInfo, 9999.0f, 1 << LayerMask.NameToLayer("Ground")))
+                {
+                    var mobP = mob.gameObject.transform.localPosition;
+                    mobP.y = hitInfo.point.y;
+                    mob.gameObject.transform.localPosition = mobP;
+                    mob.gameObject.SetActive(true);
+                }
+                else mob.onUsing = false;
+            }
+        }
+
+        int ice_PeaShooter = Random.Range(0, 10);
+        if (ice_PeaShooter <= 6)
+        {
+            mob = GetMob("ICE_PeaShooter");
+            if (mob == null) return false;
+            else
+            {
+                ray = new Ray(mob.gameObject.transform.position, Vector3.down);
+                if (Physics.Raycast(ray, out hitInfo, 9999.0f, 1 << LayerMask.NameToLayer("Ground")))
+                {
+                    var mobP = mob.gameObject.transform.localPosition;
+                    mobP.y = hitInfo.point.y;
+                    mob.gameObject.transform.localPosition = mobP;
+                    mob.gameObject.SetActive(true);
+                }
+                else mob.onUsing = false;
+            }
+        }
+
+        int FrightflyNum = Random.Range(0, 10);
+        if (FrightflyNum <= 5)
         {
             mob = GetMob("Frightfly");
             if (mob == null) return false;
@@ -213,10 +302,7 @@ public class MobManager : MonoBehaviour
     /// <param name="spawn"></param>
     public void DoSpawn(bool spawn)
     {
-        if (spawn)
-        {
-            InvokeRepeating("Spawn", 1.0f, 3.0f);
-        }
+        if (spawn) InvokeRepeating("Spawn", 1.0f, 3.0f);
         else CancelInvoke("Spawn"); //停止InvokeRepeating的方法
     }
 

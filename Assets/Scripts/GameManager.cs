@@ -24,6 +24,17 @@ public class GameManager : MonoBehaviour
         {
             MobManager.Instance().CreateMobs(frightfly);
         }
+        string fire_PeaShooter = "FIRE_PeaShooter";
+        for (int i = 0; i < 10; i++)
+        {
+            MobManager.Instance().CreateMobs(fire_PeaShooter);
+        }
+        string ice_PeaShooter = "ICE_PeaShooter";
+        for (int i = 0; i < 10; i++)
+        {
+            MobManager.Instance().CreateMobs(ice_PeaShooter);
+        }
+
         #endregion
         #region §ì¨ú»ÙÃªª«
         obstacles = new List<Obstacle>();

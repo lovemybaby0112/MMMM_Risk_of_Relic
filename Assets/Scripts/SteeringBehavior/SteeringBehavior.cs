@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SteeringBehavior
 {
     static public void Move(AIData data)
@@ -13,6 +14,7 @@ public class SteeringBehavior
             Transform my = data.my.transform;
 
             Vector3 myPosition = data.my.transform.position;
+            float y = data.my.transform.position.y;
             Vector3 mForward = my.forward;
             Vector3 mRight = my.right;
             Vector3 goDirection = data.myCurrentVector;
@@ -25,6 +27,7 @@ public class SteeringBehavior
             my.forward = goDirection;//將面對方向改為Right延伸出去的那個單位向量
 
             myPosition = myPosition + my.forward * data.moveForce * Time.deltaTime; //移動
+            myPosition.y = y;
             my.position = myPosition;
         }
     }
@@ -43,7 +46,7 @@ public class SteeringBehavior
             //data.doMove = false;
             return (int)DoAI.MeleeAttack;
         }
-        else if (distance <=  data.mobSpellAttackRange + 0.001f) //0.001f是偏差值，有其他怪物之後記得改成distance <= AIData.mobAttackDistance + 0.001f
+        else if (distance <= UnityEngine.Random.Range(data.mobSpellAttackRange, data.mobSpellAttackRange+3) + 0.001f) //0.001f是偏差值，有其他怪物之後記得改成distance <= AIData.mobAttackDistance + 0.001f
         {
             data.my.transform.LookAt(target);
             //data.doMove = false;

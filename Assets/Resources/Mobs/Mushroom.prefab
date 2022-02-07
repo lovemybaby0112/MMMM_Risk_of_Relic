@@ -1194,10 +1194,11 @@ MonoBehaviour:
     doCol: 0
     myCurrentVector: {x: 0, y: 0, z: 0}
     mobMeleeAttackRange: 3
-    mobSpellAttackRange: 10
+    mobSpellAttackRange: 6
     mobSpeed: 10
     myProbeLength: 0
     myRadius: 0
+  doAI: 0
 --- !u!114 &1029151560575120200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1210,6 +1211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2497afe00d73912458af33d0fbf6f47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
 --- !u!1 &1861845829735206
 GameObject:
   m_ObjectHideFlags: 0

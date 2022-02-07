@@ -26,6 +26,12 @@ public class MobHp : MonoBehaviour
             case "Frightfly(Clone)":
                 mobData = new Frightfly();
                 break;
+            case "FIRE_PeaShooter(Clone)":
+                mobData = new Mushroom();
+                break;
+            case "ICE_PeaShooter(Clone)":
+                mobData = new Frightfly();
+                break;
         }
         maxHealth = mobData.maxHp; //設定怪物最大血量
         currentHealth = maxHealth; //怪物當前血量

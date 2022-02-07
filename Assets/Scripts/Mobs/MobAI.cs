@@ -8,6 +8,7 @@ public class MobAI : MonoBehaviour
     int state;
     public AIData data;
     GameObject[] player;
+    [HideInInspector]
     public int doAI; //要做甚麼AI
     Animator animator;
     float hp;
