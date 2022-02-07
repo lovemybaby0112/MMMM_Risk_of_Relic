@@ -54,12 +54,12 @@ public class MobAI : MonoBehaviour
                 case 0:
                     data.doMove = false;
                     animator.SetBool("Run Forward", false);
-                    animator.SetTrigger("Punch Attack");
+                    animator.SetTrigger("Melee Attack");
                     break;
                 case 1:
                     data.doMove = false;
                     animator.SetBool("Run Forward", false);
-                    animator.SetTrigger("Breath Attack");
+                    animator.SetTrigger("Ranged Attack");
                     break;
                 case 2:
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("Run Forward In Place")) data.doMove = true;
