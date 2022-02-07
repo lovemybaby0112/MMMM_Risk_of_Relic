@@ -85,6 +85,7 @@ namespace StarterAssets
 		private int _animIDJump;
 		private int _animIDFreeFall;
 		private int _animIDMotionSpeed;
+		private int _animIDAttack;
 
 		private Animator _animator;
 		private CharacterController _controller;
@@ -145,6 +146,7 @@ namespace StarterAssets
 			_animIDJump = Animator.StringToHash("Jump");
 			_animIDFreeFall = Animator.StringToHash("FreeFall");
 			_animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+			_animIDAttack = Animator.StringToHash("Attack");
 		}
 
 		private void GroundedCheck()
@@ -179,6 +181,8 @@ namespace StarterAssets
 
 		private void Move()
 		{
+			float x = Input.GetAxisRaw("Horizontal");
+			float y = Input.GetAxisRaw("Vertical");
 			// set target speed based on move speed, sprint speed and if sprint is pressed
 			float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
