@@ -14,10 +14,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         #region 創建怪物物件
-        string mobname = "Mushroom";
+        string mushroom = "Mushroom";
         for (int i = 0; i < 10; i++)
         {
-            MobManager.Instance().CreateMobs(mobname);
+            MobManager.Instance().CreateMobs(mushroom);
+        }
+        string frightfly = "Frightfly";
+        for (int i = 0; i < 10; i++)
+        {
+            MobManager.Instance().CreateMobs(frightfly);
         }
         #endregion
         #region 抓取障礙物

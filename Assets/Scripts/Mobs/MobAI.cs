@@ -13,6 +13,7 @@ public class MobAI : MonoBehaviour
     float hp;
     bool isDead;
     bool b_DoAI;
+    Ray ray;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -23,14 +24,15 @@ public class MobAI : MonoBehaviour
     }
     private void OnEnable()
     {
+        if (this.gameObject.name == "Frightfly(Clone)") this.gameObject.GetComponent<Rigidbody>().useGravity = false;
         state = 1;
         b_DoAI = true;
         isDead = false;
         this.transform.LookAt(player[0].transform.position);
+
     }
     void Update()
     {
-
         data.targetPosition = player[0].transform.position;
         data.my = this.gameObject;
         FSM();
@@ -48,7 +50,6 @@ public class MobAI : MonoBehaviour
         else if (state == (int)MobState.DOAI && b_DoAI == true)
         {
             doAI = SteeringBehavior.Seek(data);
-            Debug.Log(data.doMove);
             switch (doAI)
             {
                 case 0:
@@ -75,6 +76,10 @@ public class MobAI : MonoBehaviour
         }
         else if (state == (int)MobState.DIE && isDead == false)
         {
+            if (this.gameObject.name == "Frightfly(Clone)")
+            {
+                this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            }
             animator.SetTrigger("Die");
             isDead = true;
             b_DoAI = false;
@@ -84,7 +89,7 @@ public class MobAI : MonoBehaviour
     void ChangeDeadState()
     {
         hp = GetComponent<MobHp>().currentHealth;
-        if(hp <= 0) state = (int)MobState.DIE;
+        if (hp <= 0) state = (int)MobState.DIE;
     }
 
 }

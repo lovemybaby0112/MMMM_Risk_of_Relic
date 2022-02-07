@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Fly Forward
+    m_ConditionEvent: Run Forward
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -225838935812750993}
@@ -232,7 +232,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Run Forward
+  m_Name: Run Forward In Place
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -309,13 +309,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Projectile Attack
+  - m_Name: Ranged Attack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Sting Attack
+  - m_Name: Melee Attack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -614,7 +614,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Projectile Attack
+    m_ConditionEvent: Ranged Attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102167312883645312}
@@ -664,7 +664,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Sting Attack
+    m_ConditionEvent: Melee Attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102767613997231764}
@@ -1168,28 +1168,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1101 &1101817289657740510
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions: []
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 0}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 1
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.85
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1101 &1101846055099964950
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1654,8 +1632,7 @@ AnimatorState:
   m_Name: Die
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 1101817289657740510}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -1826,7 +1803,7 @@ AnimatorStateMachine:
     m_Position: {x: 780, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102789167030007516}
-    m_Position: {x: -276, y: 36, z: 0}
+    m_Position: {x: -280, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102471954338798974}
     m_Position: {x: 312, y: 384, z: 0}

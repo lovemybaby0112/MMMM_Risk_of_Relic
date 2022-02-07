@@ -23,7 +23,12 @@ public class MobHp : MonoBehaviour
             case "Mushroom(Clone)":
                 mobData = new Mushroom();
                 break;
-        }     
+            case "Frightfly(Clone)":
+                mobData = new Frightfly();
+                break;
+        }
+        maxHealth = mobData.maxHp; //設定怪物最大血量
+        currentHealth = maxHealth; //怪物當前血量
     }
     void Start()
     {
@@ -34,8 +39,7 @@ public class MobHp : MonoBehaviour
         hpUI.gameObject.name = "MushroomHp";
         
         //~~~~~~~~扣血相關設定~~~~~~~~~~~
-        maxHealth = mobData.maxHp; //設定怪物最大血量
-        currentHealth = maxHealth; //怪物當前血量
+
         hpUIRect = hpUI.GetComponent<RectTransform>(); //抓取血條UI的RectTransform
         hpBar = hpUIRect.GetChild(2).GetComponent<RectTransform>(); //getUI的孩子去做扣血效果
         hurt = hpUIRect.GetChild(1).GetComponent<RectTransform>();
@@ -100,7 +104,7 @@ public class MobHp : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         //回去重設怪物狀態
-        MobManager.Instance().ResetMob(this.gameObject);
+        MobManager.Instance().ResetMob(this.gameObject , this.gameObject.name);
         currentHealth = maxHealth; //血量恢復最大血量
         //UI回到正常長度
         hpBar.sizeDelta = new Vector2(hpBarRectWidth, hpBar.sizeDelta.y);
