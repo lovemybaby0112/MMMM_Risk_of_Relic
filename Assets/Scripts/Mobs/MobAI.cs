@@ -48,7 +48,7 @@ public class MobAI : MonoBehaviour
         else if (state == (int)MobState.DOAI && b_DoAI == true)
         {
             doAI = SteeringBehavior.Seek(data);
-            Debug.Log(data.doMove);
+            //Debug.Log(data.doMove);
             switch (doAI)
             {
                 case 0:

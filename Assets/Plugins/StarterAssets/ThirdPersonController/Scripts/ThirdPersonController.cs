@@ -341,11 +341,12 @@ namespace StarterAssets
 		}
 		void Attack()
 		{
-			if (_input.attack)
-			{
-				_Cinemachine.gameObject.SetActive(true);
-			}
-
+			float fire1 =  Input.GetAxis("Fire1");
+            if (fire1 == 1 )
+            {
+				Debug.Log(fire1);
+            }
+           
 			Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			if (Physics.Raycast(_ray, out RaycastHit hit, 1000f, attackMask))
 			{
