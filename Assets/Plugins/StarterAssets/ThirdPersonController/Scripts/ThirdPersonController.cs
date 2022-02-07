@@ -60,7 +60,7 @@ namespace StarterAssets
 		[Tooltip("For locking the camera position on all axis")]
 		public bool LockCameraPosition = false;
 		[Tooltip("Camera Mouse Rotation Sensitive")]
-		public float cameraMouseSensitive = 0.3f;
+		public float cameraMouseSensitive = 0.8f;
 
 		// cinemachine
 		private float _cinemachineTargetYaw;
